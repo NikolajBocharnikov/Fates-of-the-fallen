@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgdnfpyslrr0f"]
+
+[ext_resource type="Script" uid="uid://cpot54j0lesjk" path="res://Scene/Script/enemy.gd" id="1_iker5"]
+[ext_resource type="Script" uid="uid://cwn8lknerb44e" path="res://Scene/Script/UI_Scripts/enemy_ui.gd" id="2_w5o04"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bso5d"]
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iker5"]
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bso5d"]
+albedo_color = Color(0.450536, 0.00967127, 0.0602323, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iker5"]
+size = Vector3(1.1, 1.71973, 1.1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ttbl7"]
+
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
+script = ExtResource("1_iker5")
+MOVE_SPEED = 1.0
+HEALTH = 5
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bso5d")
+
+[node name="Mesh" type="MeshInstance3D" parent="Collision"]
+mesh = SubResource("CapsuleMesh_iker5")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bso5d")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.640137, 0)
+shape = SubResource("BoxShape3D_iker5")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_w5o04")
+
+[node name="Health_Bar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = -16.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = SubResource("CanvasTexture_ttbl7")
+
+[connection signal="area_entered" from="Area" to="." method="_on_area_area_entered"]

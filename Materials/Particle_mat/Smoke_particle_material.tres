@@ -1,0 +1,39 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=7 format=3 uid="uid://dhsr75lrtrqvt"]
+
+[sub_resource type="Curve" id="Curve_utkyy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.72873, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_msq5w"]
+texture_mode = 1
+curve = SubResource("Curve_utkyy")
+
+[sub_resource type="Gradient" id="Gradient_gxkce"]
+offsets = PackedFloat32Array(0, 0.363636, 0.690909, 1)
+colors = PackedColorArray(0.929412, 0.678431, 0.678431, 1, 0.443137, 0.305882, 0.305882, 1, 0.125904, 0.0782645, 0.0782896, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6a4dk"]
+gradient = SubResource("Gradient_gxkce")
+
+[sub_resource type="Curve" id="Curve_bahoh"]
+_data = [Vector2(0, 0.314607), 0.0, 0.0, 0, 0, Vector2(0.992647, 1), 0.999136, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sbnys"]
+curve = SubResource("Curve_bahoh")
+
+[resource]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.5
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(-0.3, 1, 0)
+spread = 0.0
+initial_velocity_min = 3.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_sbnys")
+color_ramp = SubResource("GradientTexture1D_6a4dk")
+alpha_curve = SubResource("CurveTexture_msq5w")

@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dmrn841yukh0e"]
+
+[ext_resource type="Shader" uid="uid://l2urb0bsliij" path="res://Materials/Terrain_shader.tres" id="1_e25hu"]
+[ext_resource type="Texture2D" uid="uid://dy7gmdrga6wef" path="res://Materials/Textures/Poliigon_GrassPatchyGround_4585_BaseColor.jpg" id="2_wdb5m"]
+[ext_resource type="Texture2D" uid="uid://d3b3y5j5tx2p3" path="res://Materials/Textures/GroundDirtRocky020_COL_1K.jpg" id="3_db52c"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_e25hu")
+shader_parameter/Texture1_scale = Vector3(1, 1, 1)
+shader_parameter/Albedo = ExtResource("3_db52c")
+shader_parameter/Texture2_scale = Vector3(1, 1, 1)
+shader_parameter/Albedo_2 = ExtResource("2_wdb5m")
+shader_parameter/Offset = 0.0
+shader_parameter/Fade = 0.1

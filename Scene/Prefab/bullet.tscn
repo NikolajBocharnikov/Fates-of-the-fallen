@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dugu4l4k0gjq1"]
+
+[ext_resource type="Script" uid="uid://ba7vutavmq6f4" path="res://Scene/Script/bullet.gd" id="1_y68o4"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2xtun"]
+radius = 0.125
+height = 0.25
+radial_segments = 10
+rings = 5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y68o4"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_y68o4")
+BULLET_SPEED = 0.5
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_2xtun")
+
+[node name="Area3D" type="Area3D" parent="Mesh" groups=["Bullet"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Area3D"]
+shape = SubResource("BoxShape3D_y68o4")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

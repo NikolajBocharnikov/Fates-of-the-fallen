@@ -1,0 +1,115 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsoom783tto0b"]
+
+[ext_resource type="Script" uid="uid://dfm2rcbmwn1fl" path="res://Scene/Script/UI_Scripts/Main_Menu_UI.gd" id="1_ftydy"]
+[ext_resource type="AudioStream" uid="uid://b12vuwgthke5n" path="res://Assets/Sound/click-buttons-ui-menu-sounds-effects-button-6-203600.mp3" id="2_87ipw"]
+[ext_resource type="Texture2D" uid="uid://b0cmuf1hdb32i" path="res://Assets/Images/tube-spinner.svg" id="2_hii65"]
+
+[node name="Main_menu" type="Node"]
+script = ExtResource("1_ftydy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.764706, 0.0156863, 0.109804, 0.341176)
+
+[node name="Panel" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 250.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -124.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue_btn" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+
+[node name="New_Game_btn" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "New Game"
+
+[node name="Options_btn" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Options"
+
+[node name="Exit_btn" type="Button" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "Fates of The Fallen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Loading_panel" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Loading_circle" type="TextureRect" parent="Control/Loading_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("2_hii65")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("2_87ipw")
+
+[connection signal="pressed" from="Control/Panel/VBoxContainer/Continue_btn" to="." method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/New_Game_btn" to="." method="_on_new_game_btn_pressed"]
+[connection signal="pressed" from="Control/Panel/Exit_btn" to="." method="_on_exit_btn_pressed"]

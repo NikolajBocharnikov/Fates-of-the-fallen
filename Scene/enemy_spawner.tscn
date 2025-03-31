@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://2l2333mn6ex1"]
+
+[ext_resource type="Script" uid="uid://cl1qubmm3qfwg" path="res://Scene/Script/enemy_spawner.gd" id="1_es2l8"]
+[ext_resource type="PackedScene" uid="uid://dgdnfpyslrr0f" path="res://Scene/Prefab/enemy.tscn" id="2_k07ff"]
+
+[node name="Enemy_spawner" type="Node3D"]
+script = ExtResource("1_es2l8")
+ENEMY_PREFAB = ExtResource("2_k07ff")
+MAX_ENEMIS_ON_SCREEN = 10
+SPANW_RATE = 1.0
