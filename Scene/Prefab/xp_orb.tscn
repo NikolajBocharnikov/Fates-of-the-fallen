@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://vad2rkeagfck"]
+
+[ext_resource type="Script" uid="uid://cw08856nj8vd3" path="res://Scene/Script/xp_orb.gd" id="1_ff7ma"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jelmo"]
+shading_mode = 0
+albedo_color = Color(0, 0.478, 2, 1)
+grow_amount = -0.36
+
+[sub_resource type="SphereMesh" id="SphereMesh_ff7ma"]
+radius = 0.1
+height = 0.2
+radial_segments = 6
+rings = 6
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ff7ma"]
+
+[node name="XP_Orb" type="Node3D"]
+script = ExtResource("1_ff7ma")
+
+[node name="Orb" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.154788, 0)
+material_override = SubResource("StandardMaterial3D_jelmo")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_ff7ma")
+
+[node name="PickUp_Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.162297, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickUp_Area"]
+shape = SubResource("BoxShape3D_ff7ma")
+
+[connection signal="body_entered" from="PickUp_Area" to="." method="_on_pick_up_area_body_entered"]

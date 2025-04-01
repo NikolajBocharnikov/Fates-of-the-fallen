@@ -2,9 +2,12 @@ extends CharacterBody3D
 
 @export var MOVE_SPEED:float
 @export var HEALTH:int
+@export var LEVEL:int
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D as NavigationAgent3D
 @onready var health_bar: TextureProgressBar = $UI/Health_Bar
+
+var xp_scene:PackedScene = preload("res://Scene/Prefab/xp_orb.tscn")
 
 var player:Node3D
 var current_health:int
@@ -15,7 +18,11 @@ func  _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
-	if current_health <= 0 :
+	
+	if current_health <= 0 : #Death of enemy
+		SaveLoadG.Player_Statistic["Total Killed"] += 1
+		var scene = xp_scene.instantiate() #XP_Scene
+		add_child(scene)
 		queue_free()
 	
 	if player == null:

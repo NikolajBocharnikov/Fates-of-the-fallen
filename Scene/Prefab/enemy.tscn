@@ -21,6 +21,7 @@ size = Vector3(1.1, 1.71973, 1.1)
 script = ExtResource("1_iker5")
 MOVE_SPEED = 1.0
 HEALTH = 5
+LEVEL = 1
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_bso5d")

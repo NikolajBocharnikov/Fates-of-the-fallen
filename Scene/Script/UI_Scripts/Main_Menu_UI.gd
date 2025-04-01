@@ -15,6 +15,11 @@ func _on_new_game_btn_pressed() -> void:
 	$Control/Loading_panel.visible = true
 	is_loading = true
 	await $Control/AudioStreamPlayer.finished
+	var dir = DirAccess.open("user://")
+	if !dir.dir_exists("user://GodotSave/Fates_of_the_Fallen"):
+		#print("No")
+		dir.make_dir_recursive("GodotSave/Fates_of_the_Fallen")
+	
 	Global.load_scene(self,"Main")
 
 
@@ -30,3 +35,14 @@ func _on_continue_btn_pressed() -> void:
 	$Control/AudioStreamPlayer.play()
 	$Control/Loading_panel.visible = true
 	is_loading = true
+	await $Control/AudioStreamPlayer.finished
+	$FileDialog.visible = !$FileDialog.visible
+
+
+
+@warning_ignore("unused_parameter")
+func _on_file_dialog_file_selected(path: String) -> void:
+	$Control/Loading_panel.visible = false
+	if SaveLoadG.load_data($FileDialog.current_file) == 1:
+		Global.load_scene(self,"Main")
+	#print($FileDialog.current_file)

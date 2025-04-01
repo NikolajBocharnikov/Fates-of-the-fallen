@@ -1,0 +1,401 @@
+[gd_scene load_steps=12 format=3 uid="uid://dwvtpua2pdkh2"]
+
+[ext_resource type="Texture2D" uid="uid://b5i2psxxkc73c" path="res://Assets/Images/triangle-bullet.svg" id="1_5g307"]
+[ext_resource type="Script" uid="uid://brqio7in3kvl8" path="res://Scene/Script/UI_Scripts/player_ui.gd" id="1_q25tn"]
+[ext_resource type="Script" uid="uid://cmv6ofwreb88q" path="res://Scene/Script/Cards_Mechanick.gd" id="3_00pm1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q25tn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5g307"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q25tn"]
+content_margin_left = 25.0
+content_margin_top = 10.0
+content_margin_right = 25.0
+bg_color = Color(0.230912, 0.695116, 0.508385, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_00pm1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rj6n4"]
+bg_color = Color(0.332593, 0.674205, 0.578228, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_size = 10
+anti_aliasing = false
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_00pm1"]
+size = Vector2(280, 220)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xwoe"]
+bg_color = Color(0.880116, 0.46751, 0.348082, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_a57nb"]
+font_size = 30
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Player_UI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q25tn")
+
+[node name="Info_panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q25tn")
+
+[node name="XP_Bar" type="ProgressBar" parent="Info_panel"]
+modulate = Color(0, 0.784314, 0.784314, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 22.0
+grow_horizontal = 2
+show_percentage = false
+
+[node name="XP_Label" type="Label" parent="Info_panel/XP_Bar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0/100"
+
+[node name="Container" type="VBoxContainer" parent="Info_panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.435
+anchor_right = 0.075
+anchor_bottom = 0.565
+offset_top = 22.12
+offset_right = -41.4
+offset_bottom = -22.12
+grow_vertical = 2
+
+[node name="Health" type="Label" parent="Info_panel/Container"]
+layout_mode = 2
+text = "Health:"
+
+[node name="Level" type="Label" parent="Info_panel/Container"]
+layout_mode = 2
+text = "Level:"
+
+[node name="Atack_speed" type="Label" parent="Info_panel/Container"]
+layout_mode = 2
+text = "Attack Speed:"
+
+[node name="Kill_Count" type="Label" parent="Info_panel/Container"]
+layout_mode = 2
+text = "Kill Count:"
+
+[node name="Menu" type="VBoxContainer" parent="Info_panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -28.0
+offset_right = 41.0
+offset_bottom = 28.0
+grow_vertical = 2
+
+[node name="Save_btn" type="Button" parent="Info_panel/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Save"
+
+[node name="Exit_btn" type="Button" parent="Info_panel/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5g307")
+
+[node name="level_up_btn" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -109.5
+offset_right = 109.5
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_q25tn")
+text = "LEVEL UP "
+icon_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/level_up_btn"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -36.5
+offset_top = -12.0
+offset_right = -8.5
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_5g307")
+
+[node name="Cards_Panel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.063
+anchor_right = 1.0
+anchor_bottom = 1.063
+offset_top = 0.175999
+offset_bottom = 0.175964
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_00pm1")
+script = ExtResource("3_00pm1")
+
+[node name="Left_Card" type="Panel" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.052
+anchor_top = 0.114
+anchor_right = 0.312
+anchor_bottom = 0.886
+offset_left = 0.0960007
+offset_top = 0.127998
+offset_right = 0.575989
+offset_bottom = -0.127991
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rj6n4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Left_Card"]
+texture_filter = 5
+texture_repeat = 1
+custom_minimum_size = Vector2(280, 220)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.08
+anchor_right = 0.967
+anchor_bottom = 0.52
+offset_left = 0.1
+offset_right = -0.100006
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+texture = SubResource("PlaceholderTexture2D_00pm1")
+
+[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Left_Card"]
+custom_minimum_size = Vector2(280, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -230.0
+offset_right = -10.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5xwoe")
+
+[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Left_Card/Text_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+Test card desccription
+"
+label_settings = SubResource("LabelSettings_a57nb")
+horizontal_alignment = 1
+
+[node name="Midle_Card" type="Panel" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37
+anchor_top = 0.114
+anchor_right = 0.63
+anchor_bottom = 0.886
+offset_left = -0.23999
+offset_top = 0.127968
+offset_right = 0.239929
+offset_bottom = -0.127991
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rj6n4")
+
+[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Midle_Card"]
+texture_filter = 5
+texture_repeat = 1
+custom_minimum_size = Vector2(280, 220)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.08
+anchor_right = 0.967
+anchor_bottom = 0.52
+offset_left = 0.1
+offset_right = -0.100006
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+texture = SubResource("PlaceholderTexture2D_00pm1")
+
+[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Midle_Card"]
+custom_minimum_size = Vector2(280, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -230.0
+offset_right = -10.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5xwoe")
+
+[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Midle_Card/Text_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+Test card desccription
+"
+label_settings = SubResource("LabelSettings_a57nb")
+horizontal_alignment = 1
+
+[node name="Right_Card" type="Panel" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.694
+anchor_top = 0.114
+anchor_right = 0.955
+anchor_bottom = 0.886
+offset_left = 0.511963
+offset_top = 0.127998
+offset_right = -0.160034
+offset_bottom = -0.127991
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rj6n4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Right_Card"]
+texture_filter = 5
+texture_repeat = 1
+custom_minimum_size = Vector2(280, 220)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.08
+anchor_right = 0.967
+anchor_bottom = 0.52
+offset_left = 0.1
+offset_right = -0.100006
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+texture = SubResource("PlaceholderTexture2D_00pm1")
+
+[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Right_Card"]
+custom_minimum_size = Vector2(280, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -230.0
+offset_right = -10.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5xwoe")
+
+[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Right_Card/Text_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+Test card desccription
+"
+label_settings = SubResource("LabelSettings_a57nb")
+horizontal_alignment = 1
+
+[node name="Close_btn" type="Button" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -37.0
+offset_bottom = 51.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+text = "X"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+initial_position = 1
+access = 1
+root_subfolder = "user://GodotSave/Fates_of_the_Fallen"
+
+[connection signal="resized" from="Info_panel/Container" to="." method="_on_container_resized"]
+[connection signal="pressed" from="Info_panel/Menu/Save_btn" to="." method="_on_save_btn_pressed"]
+[connection signal="pressed" from="Info_panel/Menu/Exit_btn" to="." method="_on_exit_btn_pressed"]
+[connection signal="resized" from="Panel" to="." method="_on_panel_resized"]
+[connection signal="pressed" from="Panel/level_up_btn" to="." method="_on_level_up_btn_pressed"]
+[connection signal="pressed" from="Panel/Cards_Panel/Close_btn" to="." method="_on_close_btn_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

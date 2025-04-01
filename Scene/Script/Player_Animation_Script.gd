@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 	#print(input_dir)
 	
 	var direction := (Vector2i)((Vector2(input_dir.x, input_dir.y)).normalized() * 10)
-	print(direction)
+	#print(direction)
 	
 	if direction:
 		match direction:
