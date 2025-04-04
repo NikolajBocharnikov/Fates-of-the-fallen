@@ -1,6 +1,7 @@
 extends AnimationTree
 
 @onready var animation_tree: AnimationTree = $"."
+@onready var visuals: Node3D = $"../Visuals"
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
@@ -17,18 +18,30 @@ func _physics_process(delta: float) -> void:
 	
 	if direction:
 		match direction:
-			Vector2i(0,-10): #Forward
+			Vector2i(0,-10): #Backward
 				requested_animation = "Run"
-			Vector2i(0,10): #Backward
+				visuals.rotation.y = (deg_to_rad(180))
+			Vector2i(0,10): #Forward
 				requested_animation = "Run"
+				visuals.rotation.y = (deg_to_rad(0))
 			Vector2i(10,0): #Left
-				requested_animation = "Left_Strafe" 
+				requested_animation = "Left_Strafe"
+				visuals.rotation.y = (deg_to_rad(0)) 
 			Vector2i(-10,0): #Right
-				requested_animation = "Right_Strafe"  
-			Vector2i(7,7):pass #Left_up
-			Vector2i(-7,7):pass #Right_up
-			Vector2i(7,-7):pass #Left_down
-			Vector2i(-7,-7):pass #Right_Down
+				requested_animation = "Right_Strafe"
+				visuals.rotation.y = (deg_to_rad(0)) 
+			Vector2i(7,7): #Left_up
+				requested_animation = "Left_up"
+				visuals.rotation.y = (deg_to_rad(0))
+			Vector2i(-7,7): #Right_up
+				requested_animation = "Right_up"
+				visuals.rotation.y = (deg_to_rad(0)) 
+			Vector2i(7,-7): #Left_down
+				requested_animation = "Right_down"
+				visuals.rotation.y = (deg_to_rad(180)) 
+			Vector2i(-7,-7): #Right_down
+				requested_animation = "Left_down"
+				visuals.rotation.y = (deg_to_rad(180))
 	else:
 		requested_animation = "Idle"
 	

@@ -9,15 +9,16 @@ var root_node:Node3D
 var shoot_timer:float
 
 func _ready() -> void:
+	SHOOT_RATE = SaveLoadG.Player_Statistic["Atack Speed"]
 	if PLAYER_NODE.get_parent_node_3d() != null:
 		root_node = PLAYER_NODE.get_parent_node_3d()
 	#print(root_node)
 
 func _physics_process(delta: float) -> void:
-	if shoot_timer < SHOOT_RATE:
+	if shoot_timer < (SHOOT_RATE/10):
 		shoot_timer += delta
 	
-	if Input.is_action_pressed("ui_shoot") and shoot_timer >= SHOOT_RATE:
+	if Input.is_action_pressed("ui_shoot") and shoot_timer >= (SHOOT_RATE/10):
 		
 		shoot_timer = 0
 		

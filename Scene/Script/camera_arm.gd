@@ -1,14 +1,13 @@
 extends SpringArm3D
 
-@export var player:Node3D
+@export var PLAYER:Node3D
 
-# Called when the node enters the scene tree for the first time.
+var Camera_pos_y:float = 2.5
+
 func _ready() -> void:
-	pass # Replace with function body.
+	position = PLAYER.position
+	position.y = Camera_pos_y
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
-	#position = player.position + Vector3.UP * 2.0
-	pass
+	position = PLAYER.position + (Vector3.UP * Camera_pos_y)

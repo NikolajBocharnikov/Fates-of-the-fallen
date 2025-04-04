@@ -24,13 +24,15 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_go_right", "ui_go_left", "ui_backward", "ui_forward")
-	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction := CAMERA.transform.basis * (Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	#print(self.rotation.y)
 	
 	move_and_slide()
 	look_at_mouse()
@@ -49,10 +51,15 @@ func look_at_mouse():
 	var ray_result = space_state.intersect_ray(ray_query)
 	
 	if(!ray_result.is_empty()):
-		VISUALS.look_at(ray_result.position)
-		WEAPON.rotation = VISUALS.rotation.clamp(Vector3(-180,0,0),Vector3(180,0,0))
+		#self.look_at(ray_result.position)
+		if ray_result.collider.position != Vector3.ZERO:
+			WEAPON.look_at(ray_result.collider.position)
+		else:
+			WEAPON.look_at(ray_result.position)
+		#WEAPON.rotation = WEAPON.rotation_degrees.clamp(Vector3(-25.0,0.0,0.0),Vector3(50.0,0.0,0.0))
 		#print(WEAPON.rotation)
-		VISUALS.rotation = VISUALS.rotation * Vector3(0,1,1)
+		#print(ray_result.collider.position)
+		#self.rotation = self.rotation * Vector3(0,1,1)
 		#print(ray_result.position)
 
 

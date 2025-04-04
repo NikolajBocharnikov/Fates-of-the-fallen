@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cpot54j0lesjk" path="res://Scene/Script/enemy.gd" id="1_iker5"]
 [ext_resource type="Script" uid="uid://cwn8lknerb44e" path="res://Scene/Script/UI_Scripts/enemy_ui.gd" id="2_w5o04"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bso5d"]
-height = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_w5o04"]
+size = Vector3(1, 1.69189, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iker5"]
 height = 1.0
@@ -21,12 +21,14 @@ size = Vector3(1.1, 1.71973, 1.1)
 script = ExtResource("1_iker5")
 MOVE_SPEED = 1.0
 HEALTH = 5
-LEVEL = 1
+LEVEL = 5
 
 [node name="Collision" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_bso5d")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37389, 0)
+shape = SubResource("BoxShape3D_w5o04")
 
 [node name="Mesh" type="MeshInstance3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.851816, 0)
 mesh = SubResource("CapsuleMesh_iker5")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bso5d")

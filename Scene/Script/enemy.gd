@@ -10,6 +10,7 @@ extends CharacterBody3D
 var xp_scene:PackedScene = preload("res://Scene/Prefab/xp_orb.tscn")
 
 var player:Node3D
+var player_attack:int
 var current_health:int
 
 func  _ready() -> void:
@@ -18,6 +19,8 @@ func  _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
+	
+	player_attack = SaveLoadG.Player_Statistic["Atack"]
 	
 	if current_health <= 0 : #Death of enemy
 		SaveLoadG.Player_Statistic["Total Killed"] += 1
@@ -35,6 +38,6 @@ func _physics_process(delta: float) -> void:
 func _on_area_area_entered(area: Area3D) -> void:
 	#print("yes")
 	if area.is_in_group("Bullet"):
-		current_health -= 1
+		current_health -= player_attack
 		health_bar.value = current_health
 		#print(current_health)

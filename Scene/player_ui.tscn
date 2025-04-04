@@ -197,7 +197,27 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_00pm1")
 script = ExtResource("3_00pm1")
 
-[node name="Left_Card" type="Panel" parent="Panel/Cards_Panel"]
+[node name="Inventory_Panel" type="Panel" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level_Panel" type="Panel" parent="Panel/Cards_Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.062
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.824
+offset_bottom = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Attack_Card" type="Panel" parent="Panel/Cards_Panel/Level_Panel" groups=["ATK"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.052
@@ -205,15 +225,15 @@ anchor_top = 0.114
 anchor_right = 0.312
 anchor_bottom = 0.886
 offset_left = 0.0960007
-offset_top = 0.127998
+offset_top = -37.084
 offset_right = 0.575989
-offset_bottom = -0.127991
+offset_bottom = -37.34
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rj6n4")
 metadata/_edit_use_anchors_ = true
 
-[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Left_Card"]
+[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Level_Panel/Attack_Card"]
 texture_filter = 5
 texture_repeat = 1
 custom_minimum_size = Vector2(280, 220)
@@ -229,7 +249,7 @@ offset_bottom = -3.05176e-05
 grow_horizontal = 2
 texture = SubResource("PlaceholderTexture2D_00pm1")
 
-[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Left_Card"]
+[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Level_Panel/Attack_Card"]
 custom_minimum_size = Vector2(280, 200)
 layout_mode = 1
 anchors_preset = 12
@@ -244,7 +264,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5xwoe")
 
-[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Left_Card/Text_Panel"]
+[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Level_Panel/Attack_Card/Text_Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -252,12 +272,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "
-Test card desccription
+Attack +1
 "
 label_settings = SubResource("LabelSettings_a57nb")
 horizontal_alignment = 1
 
-[node name="Midle_Card" type="Panel" parent="Panel/Cards_Panel"]
+[node name="Health_Card" type="Panel" parent="Panel/Cards_Panel/Level_Panel" groups=["HP"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.37
@@ -265,14 +285,14 @@ anchor_top = 0.114
 anchor_right = 0.63
 anchor_bottom = 0.886
 offset_left = -0.23999
-offset_top = 0.127968
+offset_top = -37.0841
 offset_right = 0.239929
-offset_bottom = -0.127991
+offset_bottom = -37.34
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rj6n4")
 
-[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Midle_Card"]
+[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Level_Panel/Health_Card"]
 texture_filter = 5
 texture_repeat = 1
 custom_minimum_size = Vector2(280, 220)
@@ -288,7 +308,7 @@ offset_bottom = -3.05176e-05
 grow_horizontal = 2
 texture = SubResource("PlaceholderTexture2D_00pm1")
 
-[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Midle_Card"]
+[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Level_Panel/Health_Card"]
 custom_minimum_size = Vector2(280, 200)
 layout_mode = 1
 anchors_preset = 12
@@ -303,7 +323,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5xwoe")
 
-[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Midle_Card/Text_Panel"]
+[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Level_Panel/Health_Card/Text_Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -311,12 +331,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "
-Test card desccription
+Health +1
 "
 label_settings = SubResource("LabelSettings_a57nb")
 horizontal_alignment = 1
 
-[node name="Right_Card" type="Panel" parent="Panel/Cards_Panel"]
+[node name="Atk_Speed_Card" type="Panel" parent="Panel/Cards_Panel/Level_Panel" groups=["SP"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.694
@@ -324,15 +344,15 @@ anchor_top = 0.114
 anchor_right = 0.955
 anchor_bottom = 0.886
 offset_left = 0.511963
-offset_top = 0.127998
+offset_top = -37.084
 offset_right = -0.160034
-offset_bottom = -0.127991
+offset_bottom = -37.34
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rj6n4")
 metadata/_edit_use_anchors_ = true
 
-[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Right_Card"]
+[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Level_Panel/Atk_Speed_Card"]
 texture_filter = 5
 texture_repeat = 1
 custom_minimum_size = Vector2(280, 220)
@@ -348,7 +368,7 @@ offset_bottom = -3.05176e-05
 grow_horizontal = 2
 texture = SubResource("PlaceholderTexture2D_00pm1")
 
-[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Right_Card"]
+[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Level_Panel/Atk_Speed_Card"]
 custom_minimum_size = Vector2(280, 200)
 layout_mode = 1
 anchors_preset = 12
@@ -363,7 +383,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5xwoe")
 
-[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Right_Card/Text_Panel"]
+[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Level_Panel/Atk_Speed_Card/Text_Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -371,10 +391,48 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "
-Test card desccription
+Attack speed +0.1
 "
 label_settings = SubResource("LabelSettings_a57nb")
 horizontal_alignment = 1
+
+[node name="Statistic_Panel" type="Panel" parent="Panel/Cards_Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.062
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.824
+offset_bottom = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Inventory_btn" type="Button" parent="Panel/Cards_Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_pressed = true
+text = "Inventory"
+
+[node name="Button2" type="Button" parent="Panel/Cards_Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "Level"
+
+[node name="Button3" type="Button" parent="Panel/Cards_Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "Statistic"
 
 [node name="Close_btn" type="Button" parent="Panel/Cards_Panel"]
 layout_mode = 1
@@ -397,5 +455,8 @@ root_subfolder = "user://GodotSave/Fates_of_the_Fallen"
 [connection signal="pressed" from="Info_panel/Menu/Exit_btn" to="." method="_on_exit_btn_pressed"]
 [connection signal="resized" from="Panel" to="." method="_on_panel_resized"]
 [connection signal="pressed" from="Panel/level_up_btn" to="." method="_on_level_up_btn_pressed"]
+[connection signal="mouse_entered" from="Panel/Cards_Panel/Level_Panel/Attack_Card" to="Panel/Cards_Panel" method="_on_attack_card_mouse_entered"]
+[connection signal="mouse_entered" from="Panel/Cards_Panel/Level_Panel/Health_Card" to="Panel/Cards_Panel" method="_on_health_card_mouse_entered"]
+[connection signal="mouse_entered" from="Panel/Cards_Panel/Level_Panel/Atk_Speed_Card" to="Panel/Cards_Panel" method="_on_atk_speed_card_mouse_entered"]
 [connection signal="pressed" from="Panel/Cards_Panel/Close_btn" to="." method="_on_close_btn_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

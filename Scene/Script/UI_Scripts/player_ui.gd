@@ -9,6 +9,7 @@ extends Control
 var kill_count_var:int = 0
 var screen_size
 var panel_is_opened:bool = false
+var lvl_up_btn_is_visible = false
 
 func _ready() -> void:
 	
@@ -31,11 +32,22 @@ func _input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("ui_TAB"):
 		if $Panel.position.y > -$Panel/level_up_btn.size.y:
-			$Panel.position.y -= ($Panel.size.y + $Panel/level_up_btn.size.y)
-			panel_is_opened = true
+			if !lvl_up_btn_is_visible:
+				$Panel.position.y -= ($Panel.size.y + $Panel/level_up_btn.size.y)
+				panel_is_opened = true
+			else:
+				$Panel.position.y -= ($Panel.size.y)
+				panel_is_opened = true
 		else:
-			$Panel.position.y += ($Panel.size.y + $Panel/level_up_btn.size.y)
-			panel_is_opened = false
+			if !lvl_up_btn_is_visible:
+				$Panel.position.y += ($Panel.size.y + $Panel/level_up_btn.size.y)
+				panel_is_opened = false
+			else:
+				$Panel.position.y += ($Panel.size.y)
+				panel_is_opened = false
+			
+		lvl_up_btn_is_visible = false
+		
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
@@ -46,7 +58,10 @@ func _physics_process(delta: float) -> void:
 		level.text = "Level: " + str(SaveLoadG.Player_Statistic["Level"])
 		$Info_panel/XP_Bar.max_value = pow(SaveLoadG.Player_Statistic["Level"],1.8) * 100
 		$Panel.position.y -= $Panel/level_up_btn.size.y
+		lvl_up_btn_is_visible = true
 	
+	
+
 
 func enemy_is_killed():
 	#print("Yes")
@@ -95,7 +110,12 @@ func _on_level_up_btn_pressed() -> void:
 
 
 func _on_close_btn_pressed() -> void:
-	pass # Replace with function body.
+	if !lvl_up_btn_is_visible:
+		$Panel.position.y += ($Panel.size.y + $Panel/level_up_btn.size.y)
+		panel_is_opened = false
+	else:
+		$Panel.position.y += ($Panel.size.y)
+		panel_is_opened = false
 
 
 func _on_panel_resized() -> void:

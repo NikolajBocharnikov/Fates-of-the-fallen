@@ -8,7 +8,8 @@ var Player_Statistic = {
 	"HP":1,
 	"XP":0,
 	"Level":1,
-	"Atack Speed":1,
+	"Atack Speed":1.0,
+	"Atack":1,
 	"Total Killed":0,
 	"Profile Name":"default"
 }
