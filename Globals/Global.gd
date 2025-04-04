@@ -1,7 +1,8 @@
 extends Node
 
 const GAME_SCENES := {
-	"Main": "res://Scene/main.tscn"
+	"Main": "res://Scene/main.tscn",
+	"City": "res://Scene/city_preview.tscn"
 }
 
 func load_scene(current_scene:Variant,next_scene:Variant) -> void:

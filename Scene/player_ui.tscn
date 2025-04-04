@@ -1,10 +1,41 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwvtpua2pdkh2"]
+[gd_scene load_steps=15 format=3 uid="uid://dwvtpua2pdkh2"]
 
 [ext_resource type="Texture2D" uid="uid://b5i2psxxkc73c" path="res://Assets/Images/triangle-bullet.svg" id="1_5g307"]
 [ext_resource type="Script" uid="uid://brqio7in3kvl8" path="res://Scene/Script/UI_Scripts/player_ui.gd" id="1_q25tn"]
+[ext_resource type="Shader" uid="uid://cglbdk8lobywl" path="res://Materials/2D shaders/HP_MP_Glass.gdshader" id="2_rj6n4"]
 [ext_resource type="Script" uid="uid://cmv6ofwreb88q" path="res://Scene/Script/Cards_Mechanick.gd" id="3_00pm1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q25tn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5xwoe"]
+shader = ExtResource("2_rj6n4")
+shader_parameter/water_color = Color(1, 0, 0, 1)
+shader_parameter/water_wave_speed = 2.0
+shader_parameter/water_wave_ci = 0.05
+shader_parameter/water_back_lightness = 0.8
+shader_parameter/ball_color = Color(1, 1, 1, 1)
+shader_parameter/ball_border_ci = 5.0
+shader_parameter/ball_light_speed = 2.0
+shader_parameter/light_effect = false
+shader_parameter/border_exclusion_effect = false
+shader_parameter/wave_num = 2.0
+shader_parameter/wave_fix_on_border = false
+shader_parameter/height = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a57nb"]
+shader = ExtResource("2_rj6n4")
+shader_parameter/water_color = Color(0.162746, 0.628468, 0.401613, 1)
+shader_parameter/water_wave_speed = 2.0
+shader_parameter/water_wave_ci = 0.05
+shader_parameter/water_back_lightness = 0.8
+shader_parameter/ball_color = Color(1, 1, 1, 1)
+shader_parameter/ball_border_ci = 5.0
+shader_parameter/ball_light_speed = 2.0
+shader_parameter/light_effect = false
+shader_parameter/border_exclusion_effect = false
+shader_parameter/wave_num = 2.0
+shader_parameter/wave_fix_on_border = false
+shader_parameter/height = 0.5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5g307"]
 
@@ -144,6 +175,36 @@ text = "Save"
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Exit"
+
+[node name="Health_Panel" type="Panel" parent="Info_panel"]
+material = SubResource("ShaderMaterial_5xwoe")
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.304
+anchor_top = 0.974
+anchor_right = 0.304
+anchor_bottom = 0.974
+offset_left = -0.208008
+offset_top = -81.152
+offset_right = 79.792
+offset_bottom = -0.152039
+metadata/_edit_use_anchors_ = true
+
+[node name="Stamina_Panel" type="Panel" parent="Info_panel"]
+material = SubResource("ShaderMaterial_a57nb")
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.677
+anchor_top = 0.974
+anchor_right = 0.677
+anchor_bottom = 0.974
+offset_left = -79.9041
+offset_top = -81.152
+offset_right = 0.0959473
+offset_bottom = -0.152039
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

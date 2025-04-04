@@ -5,7 +5,7 @@ const save_path = "user://GodotSave/Fates_of_the_Fallen/"
 signal Kill_count_changed
 
 var Player_Statistic = {
-	"HP":1,
+	"HP":5,
 	"XP":0,
 	"Level":1,
 	"Atack Speed":1.0,

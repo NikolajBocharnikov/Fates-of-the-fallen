@@ -25,7 +25,9 @@ shader_parameter/Disolver_Texture = SubResource("NoiseTexture2D_42syt")
 [node name="VFX_Smoke" type="GPUParticles3D" parent="."]
 material_override = SubResource("ShaderMaterial_c6f7u")
 cast_shadow = 0
-amount = 20
+amount = 100
+lifetime = 3.0
+speed_scale = 0.3
 fixed_fps = 60
 process_material = ExtResource("2_bgho1")
 draw_pass_1 = ExtResource("3_7dkku")

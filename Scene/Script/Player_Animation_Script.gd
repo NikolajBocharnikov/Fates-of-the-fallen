@@ -6,6 +6,9 @@ extends AnimationTree
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	
+	if visuals == null:
+		return
+	
 	var anim_tree_state = animation_tree["parameters/Idle_to_Run/current_state"]
 	var requested_animation
 	#print(anim_tree_state)
@@ -20,28 +23,28 @@ func _physics_process(delta: float) -> void:
 		match direction:
 			Vector2i(0,-10): #Backward
 				requested_animation = "Run"
-				visuals.rotation.y = (deg_to_rad(180))
+				visuals.rotation.y = deg_to_rad(180)
 			Vector2i(0,10): #Forward
 				requested_animation = "Run"
-				visuals.rotation.y = (deg_to_rad(0))
+				visuals.rotation.y = deg_to_rad(0)
 			Vector2i(10,0): #Left
-				requested_animation = "Left_Strafe"
-				visuals.rotation.y = (deg_to_rad(0)) 
+				requested_animation = "Run"
+				visuals.rotation.y = deg_to_rad(90)
 			Vector2i(-10,0): #Right
-				requested_animation = "Right_Strafe"
-				visuals.rotation.y = (deg_to_rad(0)) 
+				requested_animation = "Run"
+				visuals.rotation.y = deg_to_rad(-90)
 			Vector2i(7,7): #Left_up
-				requested_animation = "Left_up"
-				visuals.rotation.y = (deg_to_rad(0))
+				requested_animation = "Run"
+				visuals.rotation.y = deg_to_rad(45)
 			Vector2i(-7,7): #Right_up
-				requested_animation = "Right_up"
-				visuals.rotation.y = (deg_to_rad(0)) 
+				requested_animation = "Run"
+				visuals.rotation.y = deg_to_rad(315)
 			Vector2i(7,-7): #Left_down
-				requested_animation = "Right_down"
-				visuals.rotation.y = (deg_to_rad(180)) 
+				requested_animation = "Run"
+				visuals.rotation.y = deg_to_rad(135)
 			Vector2i(-7,-7): #Right_down
-				requested_animation = "Left_down"
-				visuals.rotation.y = (deg_to_rad(180))
+				requested_animation = "Run"
+				visuals.rotation.y = deg_to_rad(225)
 	else:
 		requested_animation = "Idle"
 	

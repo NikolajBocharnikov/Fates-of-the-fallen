@@ -6,6 +6,8 @@ extends Control
 @onready var atack_speed: Label = $Info_panel/Container/Atack_speed
 @onready var kill_count: Label = $Info_panel/Container/Kill_Count
 
+var CURRENT_HEALTH:float
+
 var kill_count_var:int = 0
 var screen_size
 var panel_is_opened:bool = false
@@ -22,6 +24,8 @@ func _ready() -> void:
 	atack_speed.text = atack_speed.text + str(SaveLoadG.Player_Statistic["Atack Speed"])
 	kill_count.text = kill_count.text + str(SaveLoadG.Player_Statistic["Total Killed"])
 	kill_count_var = SaveLoadG.Player_Statistic["Total Killed"]
+	
+	hp_sp_init()
 
 @warning_ignore("unused_parameter")
 func _input(event: InputEvent) -> void:
@@ -60,8 +64,10 @@ func _physics_process(delta: float) -> void:
 		$Panel.position.y -= $Panel/level_up_btn.size.y
 		lvl_up_btn_is_visible = true
 	
-	
-
+	var player = player_ui.get_parent()
+	#print(player.HIT)
+	if player.HIT:
+		hp_sp_update()
 
 func enemy_is_killed():
 	#print("Yes")
@@ -74,6 +80,19 @@ func level_up():
 		SaveLoadG.Player_Statistic["Level"] += 1
 		return 1
 	return 0
+
+func hp_sp_init():
+	CURRENT_HEALTH = SaveLoadG.Player_Statistic["HP"]
+	$Info_panel/Health_Panel.material.set("shader_parameter/height",CURRENT_HEALTH)
+	$Info_panel/Stamina_Panel.material.set("shader_parameter/height",1.0)
+
+func hp_sp_update():
+	var player = player_ui.get_parent()
+	CURRENT_HEALTH = player.CURRENT_HP / SaveLoadG.Player_Statistic["HP"]
+	if player.CURRENT_HP > 0:
+		$Info_panel/Health_Panel.material.set("shader_parameter/height",CURRENT_HEALTH)
+	else:
+		$Info_panel/Health_Panel.material.set("shader_parameter/height",0.0)
 
 func _on_container_resized() -> void:
 	
