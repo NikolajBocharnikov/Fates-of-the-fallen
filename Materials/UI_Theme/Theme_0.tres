@@ -1,0 +1,45 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bwbvuor4bwca7"]
+
+[ext_resource type="Texture2D" uid="uid://bhp28ow3gyg5m" path="res://Assets/Images/UI_Images/Kenny_UI/Double/Border/panel-border-000.png" id="1_rw334"]
+[ext_resource type="Texture2D" uid="uid://dcago0v7najuu" path="res://Assets/Images/UI_Images/Kenny_UI/Double/Transparent center/panel-transparent-center-000.png" id="2_gyuoj"]
+[ext_resource type="Texture2D" uid="uid://chcnaa02j1c6x" path="res://Assets/Images/UI_Images/Kenny_UI/Double/Panel/panel-000.png" id="3_d2v8h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yok32"]
+texture = ExtResource("1_rw334")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+modulate_color = Color(0.285, 0.285, 0.285, 0.1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_klvvj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_47k5r"]
+texture = ExtResource("2_gyuoj")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oqads"]
+texture = ExtResource("1_rw334")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+modulate_color = Color(0.28485, 0.28485, 0.28485, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hag5k"]
+texture = ExtResource("3_d2v8h")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+modulate_color = Color(0.28485, 0.28485, 0.28485, 1)
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxTexture_yok32")
+Button/styles/focus = SubResource("StyleBoxEmpty_klvvj")
+Button/styles/hover = SubResource("StyleBoxTexture_47k5r")
+Button/styles/normal = SubResource("StyleBoxTexture_oqads")
+Button/styles/pressed = SubResource("StyleBoxTexture_hag5k")

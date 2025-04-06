@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwvtpua2pdkh2"]
+[gd_scene load_steps=16 format=3 uid="uid://dwvtpua2pdkh2"]
 
 [ext_resource type="Texture2D" uid="uid://b5i2psxxkc73c" path="res://Assets/Images/triangle-bullet.svg" id="1_5g307"]
 [ext_resource type="Script" uid="uid://brqio7in3kvl8" path="res://Scene/Script/UI_Scripts/player_ui.gd" id="1_q25tn"]
+[ext_resource type="Theme" uid="uid://bwbvuor4bwca7" path="res://Materials/UI_Theme/Theme_0.tres" id="2_5xwoe"]
 [ext_resource type="Shader" uid="uid://cglbdk8lobywl" path="res://Materials/2D shaders/HP_MP_Glass.gdshader" id="2_rj6n4"]
 [ext_resource type="Script" uid="uid://cmv6ofwreb88q" path="res://Scene/Script/Cards_Mechanick.gd" id="3_00pm1"]
 
@@ -102,6 +103,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_5xwoe")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_q25tn")
 
 [node name="XP_Bar" type="ProgressBar" parent="Info_panel"]
@@ -214,6 +216,7 @@ anchor_right = 1.0
 anchor_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_5xwoe")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5g307")
 
 [node name="level_up_btn" type="Button" parent="Panel"]

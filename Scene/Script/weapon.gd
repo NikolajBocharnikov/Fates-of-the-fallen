@@ -27,4 +27,6 @@ func _physics_process(delta: float) -> void:
 		bullet.position = SHOOT_POS.global_position
 		
 		bullet.bullet_dir = -get_global_transform().basis.z
+		$"../Sound".play_attack_sound()
+		
 		
