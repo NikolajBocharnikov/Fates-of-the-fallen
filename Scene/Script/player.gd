@@ -59,7 +59,8 @@ func look_at_mouse():
 	if(!ray_result.is_empty()):
 		#self.look_at(ray_result.position)
 		if ray_result.collider.position != Vector3.ZERO:
-			WEAPON.look_at(ray_result.collider.position)
+			WEAPON.look_at(ray_result.collider.get_node_or_null("Area").global_position)
+			#print(ray_result.collider.get_node_or_null("Area").global_position)
 		else:
 			WEAPON.look_at(ray_result.position)
 		#WEAPON.rotation = WEAPON.rotation_degrees.clamp(Vector3(-25.0,0.0,0.0),Vector3(50.0,0.0,0.0))

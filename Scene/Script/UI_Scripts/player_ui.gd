@@ -35,34 +35,24 @@ func _input(event: InputEvent) -> void:
 		get_tree().paused = !get_tree().paused
 	
 	if Input.is_action_just_pressed("ui_TAB"):
-		if $Panel.position.y > -$Panel/level_up_btn.size.y:
-			if !lvl_up_btn_is_visible:
-				$Panel.position.y -= ($Panel.size.y + $Panel/level_up_btn.size.y)
-				panel_is_opened = true
-			else:
-				$Panel.position.y -= ($Panel.size.y)
-				panel_is_opened = true
-		else:
-			if !lvl_up_btn_is_visible:
-				$Panel.position.y += ($Panel.size.y + $Panel/level_up_btn.size.y)
-				panel_is_opened = false
-			else:
-				$Panel.position.y += ($Panel.size.y)
-				panel_is_opened = false
-			
-		lvl_up_btn_is_visible = false
-		
+		$Panel/Cards_Panel.visible = !$Panel/Cards_Panel.visible
+		get_tree().paused = !get_tree().paused
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	$Info_panel/XP_Bar/XP_Label.text = str(SaveLoadG.Player_Statistic["XP"]) + "/" + str(pow(SaveLoadG.Player_Statistic["Level"],1.8) * 100)
 	$Info_panel/XP_Bar.value = SaveLoadG.Player_Statistic["XP"]
 	
+	if $Panel/Cards_Panel.visible == false: $Info_panel.top_level = true
+	else: $Info_panel.top_level = false
+	
 	if level_up() == 1:
 		level.text = "Level: " + str(SaveLoadG.Player_Statistic["Level"])
 		$Info_panel/XP_Bar.max_value = pow(SaveLoadG.Player_Statistic["Level"],1.8) * 100
-		$Panel.position.y -= $Panel/level_up_btn.size.y
-		lvl_up_btn_is_visible = true
+		$Panel/level_up_btn.visible = true
+		$Panel/Cards_Panel.LEVEL += SaveLoadG.Player_Statistic["Level"]
+		#print($Panel/Cards_Panel.LEVEL)
+		#print($Panel/Cards_Panel.CURRENT_LEVEL)
 	
 	var player = player_ui.get_parent()
 	#print(player.HIT)
@@ -125,18 +115,10 @@ func _on_file_dialog_file_selected(path: String) -> void:
 
 
 func _on_level_up_btn_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().paused = !get_tree().paused
+	$Panel/Cards_Panel.visible = true
 
 
 func _on_close_btn_pressed() -> void:
-	if !lvl_up_btn_is_visible:
-		$Panel.position.y += ($Panel.size.y + $Panel/level_up_btn.size.y)
-		panel_is_opened = false
-	else:
-		$Panel.position.y += ($Panel.size.y)
-		panel_is_opened = false
-
-
-func _on_panel_resized() -> void:
-	if panel_is_opened:
-		$Panel.position.y = $Panel/level_up_btn.position.y - $Panel/level_up_btn.size.y
+	get_tree().paused = !get_tree().paused
+	$Panel/Cards_Panel.visible = false

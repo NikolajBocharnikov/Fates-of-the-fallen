@@ -38,15 +38,15 @@ void fragment() {
 			COLOR = vec4(water_color.rgb,height);
 		} else {
 
-			if (sin((cos(uv.x*PI*a) + TIME*water_wave_speed)*wave_num)*water_wave_ci + (1. - height) > UV.y) { 
+			if (sin((cos(uv.x*PI*a) + TIME*water_wave_speed)*wave_num)*water_wave_ci + (1. - height) > UV.y) {
 
 				COLOR = vec4(0.);
 			} else {
 
 				COLOR = vec4(water_color*water_back_lightness);
 			}
-			
-			if (sin((cos(uv.x*PI*a + PI*b) + TIME*water_wave_speed)*wave_num)*water_wave_ci + (1. - height) < UV.y) { 
+
+			if (sin((cos(uv.x*PI*a + PI*b) + TIME*water_wave_speed)*wave_num)*water_wave_ci + (1. - height) < UV.y) {
 
 				COLOR = vec4(water_color);
 			}

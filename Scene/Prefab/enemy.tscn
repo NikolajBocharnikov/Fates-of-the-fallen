@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cwn8lknerb44e" path="res://Scene/Script/UI_Scripts/enemy_ui.gd" id="2_w5o04"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5o04"]
-size = Vector3(1, 1.69189, 1)
+size = Vector3(1, 0.8728, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iker5"]
 height = 1.0
@@ -24,7 +24,7 @@ HEALTH = 5
 LEVEL = 5
 
 [node name="Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37389, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.964345, 0)
 shape = SubResource("BoxShape3D_w5o04")
 
 [node name="Mesh" type="MeshInstance3D" parent="Collision"]

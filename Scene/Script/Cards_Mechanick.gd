@@ -1,36 +1,49 @@
 extends Panel
 
 var CURRENT_LEVEL:int
+var LEVEL:int
 var CARD_TYPE:String = " "
 
 var level_is_up:bool = false
 
 func _ready() -> void:
 	CURRENT_LEVEL = SaveLoadG.Player_Statistic["Level"]
+	LEVEL = CURRENT_LEVEL
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
-	if CURRENT_LEVEL != SaveLoadG.Player_Statistic["Level"]:
+	if CURRENT_LEVEL != LEVEL:
 		level_is_up = true
-		CURRENT_LEVEL = SaveLoadG.Player_Statistic["Level"]
-		$Level_Panel.visible = !$Level_Panel.visible
+		CURRENT_LEVEL = LEVEL
 	
 	if level_is_up :
-		if Input.is_action_just_pressed("ui_shoot") and CARD_TYPE != " ":
+		$Card_container/HP_Card_btn.disabled = false
+		$Card_container/ATK_Card_btn.disabled = false
+		$Card_container/ATK_Speed_Card_btn.disabled = false
+		
+		if CARD_TYPE != " ":
 			if CARD_TYPE == "ATK":
 				SaveLoadG.Player_Statistic["Atack"] += 1
+				CARD_TYPE = " "
 			if CARD_TYPE == "HP":
 				SaveLoadG.Player_Statistic["HP"] += 1
+				CARD_TYPE = " "
 			if CARD_TYPE == "SP":
 				SaveLoadG.Player_Statistic["Atack Speed"] += 0.1
+				CARD_TYPE = " "
+			
+			$Card_container/HP_Card_btn.disabled = true
+			$Card_container/ATK_Card_btn.disabled = true
+			$Card_container/ATK_Speed_Card_btn.disabled = true
 			level_is_up = false
-			$Level_Panel.visible = !$Level_Panel.visible
+	
+	if $Card_container/HP_Card_btn.disabled == true:$"../level_up_btn".visible = false
 
-func _on_attack_card_mouse_entered() -> void:
+func _on_atk_card_btn_pressed() -> void:
 	CARD_TYPE = "ATK"
 
-func _on_health_card_mouse_entered() -> void:
+func _on_hp_card_btn_pressed() -> void:
 	CARD_TYPE = "HP"
 
-func _on_atk_speed_card_mouse_entered() -> void:
+func _on_atk_speed_card_btn_pressed() -> void:
 	CARD_TYPE = "SP"

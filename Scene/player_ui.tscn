@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwvtpua2pdkh2"]
+[gd_scene load_steps=14 format=3 uid="uid://dwvtpua2pdkh2"]
 
 [ext_resource type="Texture2D" uid="uid://b5i2psxxkc73c" path="res://Assets/Images/triangle-bullet.svg" id="1_5g307"]
 [ext_resource type="Script" uid="uid://brqio7in3kvl8" path="res://Scene/Script/UI_Scripts/player_ui.gd" id="1_q25tn"]
 [ext_resource type="Theme" uid="uid://bwbvuor4bwca7" path="res://Materials/UI_Theme/Theme_0.tres" id="2_5xwoe"]
 [ext_resource type="Shader" uid="uid://cglbdk8lobywl" path="res://Materials/2D shaders/HP_MP_Glass.gdshader" id="2_rj6n4"]
 [ext_resource type="Script" uid="uid://cmv6ofwreb88q" path="res://Scene/Script/Cards_Mechanick.gd" id="3_00pm1"]
+[ext_resource type="Texture2D" uid="uid://b7x4e7skyvj7r" path="res://Assets/Images/ICONs/Pixel's_icon/Weapon & Tool/Golden Sword.png" id="6_yegcq"]
+[ext_resource type="Texture2D" uid="uid://nlo323dqtl0d" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Heart.png" id="7_adel5"]
+[ext_resource type="Texture2D" uid="uid://dwh3kqyqimmjn" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Rune Stone.png" id="8_0pu00"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q25tn"]
 
@@ -47,44 +50,6 @@ content_margin_right = 25.0
 bg_color = Color(0.230912, 0.695116, 0.508385, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_00pm1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rj6n4"]
-bg_color = Color(0.332593, 0.674205, 0.578228, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_size = 10
-anti_aliasing = false
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_00pm1"]
-size = Vector2(280, 220)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xwoe"]
-bg_color = Color(0.880116, 0.46751, 0.348082, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="LabelSettings" id="LabelSettings_a57nb"]
-font_size = 30
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Player_UI" type="Control"]
 process_mode = 3
@@ -210,24 +175,27 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 2.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme = ExtResource("2_5xwoe")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5g307")
 
 [node name="level_up_btn" type="Button" parent="Panel"]
+visible = false
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
+anchor_bottom = 1.0
 offset_left = -109.5
+offset_top = -42.0
 offset_right = 109.5
-offset_bottom = 42.0
 grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_q25tn")
 text = "LEVEL UP "
@@ -249,265 +217,102 @@ grow_vertical = 2
 texture = ExtResource("1_5g307")
 
 [node name="Cards_Panel" type="Panel" parent="Panel"]
+visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.063
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 1.063
-offset_top = 0.175999
-offset_bottom = 0.175964
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_00pm1")
 script = ExtResource("3_00pm1")
-
-[node name="Inventory_Panel" type="Panel" parent="Panel/Cards_Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Level_Panel" type="Panel" parent="Panel/Cards_Panel"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.062
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.824
-offset_bottom = 6.10352e-05
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Attack_Card" type="Panel" parent="Panel/Cards_Panel/Level_Panel" groups=["ATK"]]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.052
-anchor_top = 0.114
-anchor_right = 0.312
-anchor_bottom = 0.886
-offset_left = 0.0960007
-offset_top = -37.084
-offset_right = 0.575989
-offset_bottom = -37.34
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rj6n4")
-metadata/_edit_use_anchors_ = true
-
-[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Level_Panel/Attack_Card"]
-texture_filter = 5
-texture_repeat = 1
-custom_minimum_size = Vector2(280, 220)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.033
-anchor_top = 0.08
-anchor_right = 0.967
-anchor_bottom = 0.52
-offset_left = 0.1
-offset_right = -0.100006
-offset_bottom = -3.05176e-05
-grow_horizontal = 2
-texture = SubResource("PlaceholderTexture2D_00pm1")
-
-[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Level_Panel/Attack_Card"]
-custom_minimum_size = Vector2(280, 200)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -230.0
-offset_right = -10.0
-offset_bottom = -30.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5xwoe")
-
-[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Level_Panel/Attack_Card/Text_Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "
-Attack +1
-"
-label_settings = SubResource("LabelSettings_a57nb")
-horizontal_alignment = 1
-
-[node name="Health_Card" type="Panel" parent="Panel/Cards_Panel/Level_Panel" groups=["HP"]]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.37
-anchor_top = 0.114
-anchor_right = 0.63
-anchor_bottom = 0.886
-offset_left = -0.23999
-offset_top = -37.0841
-offset_right = 0.239929
-offset_bottom = -37.34
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rj6n4")
-
-[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Level_Panel/Health_Card"]
-texture_filter = 5
-texture_repeat = 1
-custom_minimum_size = Vector2(280, 220)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.033
-anchor_top = 0.08
-anchor_right = 0.967
-anchor_bottom = 0.52
-offset_left = 0.1
-offset_right = -0.100006
-offset_bottom = -3.05176e-05
-grow_horizontal = 2
-texture = SubResource("PlaceholderTexture2D_00pm1")
-
-[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Level_Panel/Health_Card"]
-custom_minimum_size = Vector2(280, 200)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -230.0
-offset_right = -10.0
-offset_bottom = -30.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5xwoe")
-
-[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Level_Panel/Health_Card/Text_Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "
-Health +1
-"
-label_settings = SubResource("LabelSettings_a57nb")
-horizontal_alignment = 1
-
-[node name="Atk_Speed_Card" type="Panel" parent="Panel/Cards_Panel/Level_Panel" groups=["SP"]]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.694
-anchor_top = 0.114
-anchor_right = 0.955
-anchor_bottom = 0.886
-offset_left = 0.511963
-offset_top = -37.084
-offset_right = -0.160034
-offset_bottom = -37.34
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rj6n4")
-metadata/_edit_use_anchors_ = true
-
-[node name="Texture" type="TextureRect" parent="Panel/Cards_Panel/Level_Panel/Atk_Speed_Card"]
-texture_filter = 5
-texture_repeat = 1
-custom_minimum_size = Vector2(280, 220)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.033
-anchor_top = 0.08
-anchor_right = 0.967
-anchor_bottom = 0.52
-offset_left = 0.1
-offset_right = -0.100006
-offset_bottom = -3.05176e-05
-grow_horizontal = 2
-texture = SubResource("PlaceholderTexture2D_00pm1")
-
-[node name="Text_Panel" type="Panel" parent="Panel/Cards_Panel/Level_Panel/Atk_Speed_Card"]
-custom_minimum_size = Vector2(280, 200)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -230.0
-offset_right = -10.0
-offset_bottom = -30.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5xwoe")
-
-[node name="Description_label" type="Label" parent="Panel/Cards_Panel/Level_Panel/Atk_Speed_Card/Text_Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "
-Attack speed +0.1
-"
-label_settings = SubResource("LabelSettings_a57nb")
-horizontal_alignment = 1
-
-[node name="Statistic_Panel" type="Panel" parent="Panel/Cards_Panel"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.062
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.824
-offset_bottom = 6.10352e-05
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Cards_Panel"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 40.0
-grow_horizontal = 2
-
-[node name="Inventory_btn" type="Button" parent="Panel/Cards_Panel/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-toggle_mode = true
-button_pressed = true
-text = "Inventory"
-
-[node name="Button2" type="Button" parent="Panel/Cards_Panel/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-toggle_mode = true
-text = "Level"
-
-[node name="Button3" type="Button" parent="Panel/Cards_Panel/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-toggle_mode = true
-text = "Statistic"
 
 [node name="Close_btn" type="Button" parent="Panel/Cards_Panel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -37.0
-offset_bottom = 51.0
+offset_left = -92.0
+offset_bottom = 92.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 text = "X"
+
+[node name="Label" type="Label" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 18.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 86
+text = "Player information"
+horizontal_alignment = 1
+
+[node name="Card_container" type="HBoxContainer" parent="Panel/Cards_Panel"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.077
+anchor_top = 0.77
+anchor_right = 0.424
+anchor_bottom = 0.77
+offset_left = 0.29599
+offset_top = -99.96
+offset_right = 0.551971
+offset_bottom = 0.0400085
+
+[node name="ATK_Card_btn" type="Button" parent="Panel/Cards_Panel/Card_container" groups=["ATK"]]
+layout_mode = 2
+disabled = true
+icon = ExtResource("6_yegcq")
+
+[node name="Label" type="Label" parent="Panel/Cards_Panel/Card_container/ATK_Card_btn"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.194
+offset_top = 101.36
+offset_bottom = -0.0400009
+grow_horizontal = 2
+grow_vertical = 2
+text = "ATK +1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HP_Card_btn" type="Button" parent="Panel/Cards_Panel/Card_container" groups=["HP"]]
+layout_mode = 2
+disabled = true
+icon = ExtResource("7_adel5")
+
+[node name="Label" type="Label" parent="Panel/Cards_Panel/Card_container/HP_Card_btn"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.194
+offset_top = 101.36
+offset_bottom = -0.0400009
+grow_horizontal = 2
+grow_vertical = 2
+text = "HP +1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ATK_Speed_Card_btn" type="Button" parent="Panel/Cards_Panel/Card_container" groups=["SP"]]
+layout_mode = 2
+disabled = true
+icon = ExtResource("8_0pu00")
+
+[node name="Label" type="Label" parent="Panel/Cards_Panel/Card_container/ATK_Speed_Card_btn"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.194
+offset_top = 101.36
+offset_bottom = -0.0400009
+grow_horizontal = 2
+grow_vertical = 2
+text = "ATK Rate +0.1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 1
@@ -517,10 +322,9 @@ root_subfolder = "user://GodotSave/Fates_of_the_Fallen"
 [connection signal="resized" from="Info_panel/Container" to="." method="_on_container_resized"]
 [connection signal="pressed" from="Info_panel/Menu/Save_btn" to="." method="_on_save_btn_pressed"]
 [connection signal="pressed" from="Info_panel/Menu/Exit_btn" to="." method="_on_exit_btn_pressed"]
-[connection signal="resized" from="Panel" to="." method="_on_panel_resized"]
 [connection signal="pressed" from="Panel/level_up_btn" to="." method="_on_level_up_btn_pressed"]
-[connection signal="mouse_entered" from="Panel/Cards_Panel/Level_Panel/Attack_Card" to="Panel/Cards_Panel" method="_on_attack_card_mouse_entered"]
-[connection signal="mouse_entered" from="Panel/Cards_Panel/Level_Panel/Health_Card" to="Panel/Cards_Panel" method="_on_health_card_mouse_entered"]
-[connection signal="mouse_entered" from="Panel/Cards_Panel/Level_Panel/Atk_Speed_Card" to="Panel/Cards_Panel" method="_on_atk_speed_card_mouse_entered"]
 [connection signal="pressed" from="Panel/Cards_Panel/Close_btn" to="." method="_on_close_btn_pressed"]
+[connection signal="pressed" from="Panel/Cards_Panel/Card_container/ATK_Card_btn" to="Panel/Cards_Panel" method="_on_atk_card_btn_pressed"]
+[connection signal="pressed" from="Panel/Cards_Panel/Card_container/HP_Card_btn" to="Panel/Cards_Panel" method="_on_hp_card_btn_pressed"]
+[connection signal="pressed" from="Panel/Cards_Panel/Card_container/ATK_Speed_Card_btn" to="Panel/Cards_Panel" method="_on_atk_speed_card_btn_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
