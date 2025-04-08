@@ -325,6 +325,7 @@ root_subfolder = "user://GodotSave/Fates_of_the_Fallen"
 [connection signal="pressed" from="Panel/level_up_btn" to="." method="_on_level_up_btn_pressed"]
 [connection signal="pressed" from="Panel/Cards_Panel/Close_btn" to="." method="_on_close_btn_pressed"]
 [connection signal="pressed" from="Panel/Cards_Panel/Card_container/ATK_Card_btn" to="Panel/Cards_Panel" method="_on_atk_card_btn_pressed"]
+[connection signal="pressed" from="Panel/Cards_Panel/Card_container/HP_Card_btn" to="." method="_on_hp_card_btn_pressed"]
 [connection signal="pressed" from="Panel/Cards_Panel/Card_container/HP_Card_btn" to="Panel/Cards_Panel" method="_on_hp_card_btn_pressed"]
 [connection signal="pressed" from="Panel/Cards_Panel/Card_container/ATK_Speed_Card_btn" to="Panel/Cards_Panel" method="_on_atk_speed_card_btn_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

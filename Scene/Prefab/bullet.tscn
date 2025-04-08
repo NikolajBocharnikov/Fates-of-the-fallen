@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dugu4l4k0gjq1"]
+[gd_scene load_steps=7 format=3 uid="uid://dugu4l4k0gjq1"]
 
 [ext_resource type="Script" uid="uid://ba7vutavmq6f4" path="res://Scene/Script/bullet.gd" id="1_y68o4"]
 
@@ -9,7 +9,28 @@ radial_segments = 10
 rings = 5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y68o4"]
-size = Vector3(0.25, 0.25, 0.25)
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y68o4"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(1, 1, 1)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jphy6"]
+cull_mode = 2
+albedo_color = Color(0, 0.722338, 0.74229, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_1imlj"]
+material = SubResource("StandardMaterial3D_jphy6")
+size = Vector2(0.1, 0.1)
 
 [node name="Bullet" type="Node3D"]
 script = ExtResource("1_y68o4")
@@ -22,7 +43,15 @@ mesh = SubResource("SphereMesh_2xtun")
 [node name="Area3D" type="Area3D" parent="Mesh" groups=["Bullet"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000476077, 0, 0)
 shape = SubResource("BoxShape3D_y68o4")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+amount = 32
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_y68o4")
+draw_pass_1 = SubResource("QuadMesh_1imlj")

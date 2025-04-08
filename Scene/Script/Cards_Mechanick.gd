@@ -4,17 +4,21 @@ var CURRENT_LEVEL:int
 var LEVEL:int
 var CARD_TYPE:String = " "
 
+var player:Node3D = null
+
 var level_is_up:bool = false
 
 func _ready() -> void:
 	CURRENT_LEVEL = SaveLoadG.Player_Statistic["Level"]
 	LEVEL = CURRENT_LEVEL
+	player = $"../..".get_parent()
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if CURRENT_LEVEL != LEVEL:
+		#print(CURRENT_LEVEL)
+		#print(LEVEL)
 		level_is_up = true
-		CURRENT_LEVEL = LEVEL
 	
 	if level_is_up :
 		$Card_container/HP_Card_btn.disabled = false
@@ -24,12 +28,16 @@ func _process(delta: float) -> void:
 		if CARD_TYPE != " ":
 			if CARD_TYPE == "ATK":
 				SaveLoadG.Player_Statistic["Atack"] += 1
+				CURRENT_LEVEL += 1
 				CARD_TYPE = " "
 			if CARD_TYPE == "HP":
 				SaveLoadG.Player_Statistic["HP"] += 1
+				CURRENT_LEVEL += 1
+				player.CURRENT_HP += 1.0
 				CARD_TYPE = " "
 			if CARD_TYPE == "SP":
 				SaveLoadG.Player_Statistic["Atack Speed"] += 0.1
+				CURRENT_LEVEL += 1
 				CARD_TYPE = " "
 			
 			$Card_container/HP_Card_btn.disabled = true

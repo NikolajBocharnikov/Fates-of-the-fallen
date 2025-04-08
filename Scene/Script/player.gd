@@ -7,13 +7,13 @@ extends CharacterBody3D
 
 const JUMP_VELOCITY = 4.5
 
-var CURRENT_HP:int
+var CURRENT_HP:float
 var HIT:bool = false
 
 var is_alive:bool = true
 
 func _ready() -> void:
-	CURRENT_HP = SaveLoadG.Player_Statistic["HP"]
+	CURRENT_HP = float(SaveLoadG.Player_Statistic["HP"])
 
 func _physics_process(delta: float) -> void:
 	if !is_alive:
@@ -76,7 +76,7 @@ func _on_area_body_entered(body: Node3D) -> void:
 		velocity.z = move_toward(velocity.z, 0, .5)
 	
 	if body.is_in_group("Enemy"):
-		CURRENT_HP -= 1
+		CURRENT_HP -= 1.0
 		HIT = true
 		
 		var z:int = randi_range(-1,1)
@@ -85,9 +85,8 @@ func _on_area_body_entered(body: Node3D) -> void:
 		velocity = Vector3(randf_range(5,10) * z,0,randf_range(5,10) * z)
 		velocity.y = JUMP_VELOCITY
 		
-		if CURRENT_HP == 0:
+		if CURRENT_HP == 0.0:
 			is_alive = false
 			if VISUALS != null:
 				VISUALS.visible = false
 		await get_tree().create_timer(100).timeout
-		HIT = false
