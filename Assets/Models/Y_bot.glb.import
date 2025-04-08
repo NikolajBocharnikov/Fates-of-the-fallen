@@ -12627,6 +12627,12 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 }
+},
+"nodes": {
+"PATH:Y_Bot/Skeleton3D": {
+"retarget/bone_map": null,
+"retarget/bone_renamer/unique_node/skeleton_name": "Skeleton3D"
+}
 }
 }
 gltf/naming_version=1

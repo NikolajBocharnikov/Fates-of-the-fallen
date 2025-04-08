@@ -79,7 +79,10 @@ func _on_area_body_entered(body: Node3D) -> void:
 		CURRENT_HP -= 1
 		HIT = true
 		
-		velocity = Vector3(randf_range(-10,10),0,randf_range(-10,10))
+		var z:int = randi_range(-1,1)
+		if z == 0: z = 1
+		
+		velocity = Vector3(randf_range(5,10) * z,0,randf_range(5,10) * z)
 		velocity.y = JUMP_VELOCITY
 		
 		if CURRENT_HP == 0:
