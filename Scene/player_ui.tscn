@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwvtpua2pdkh2"]
+[gd_scene load_steps=17 format=3 uid="uid://dwvtpua2pdkh2"]
 
 [ext_resource type="Texture2D" uid="uid://b5i2psxxkc73c" path="res://Assets/Images/triangle-bullet.svg" id="1_5g307"]
 [ext_resource type="Script" uid="uid://brqio7in3kvl8" path="res://Scene/Script/UI_Scripts/player_ui.gd" id="1_q25tn"]
@@ -52,6 +52,9 @@ content_margin_right = 25.0
 bg_color = Color(0.230912, 0.695116, 0.508385, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pu00"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="Player_UI" type="Control"]
 process_mode = 3
@@ -383,11 +386,35 @@ popup/item_0/id = 0
 popup/item_1/text = "Scale: 0.5"
 popup/item_1/id = 1
 
+[node name="HUB_btn" type="Button" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.489
+anchor_top = 0.856
+anchor_right = 0.489
+anchor_bottom = 0.856
+offset_left = -128.328
+offset_top = 0.311951
+offset_right = 127.672
+offset_bottom = 78.312
+text = "Go back to HUB"
+
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 1
 access = 1
 root_subfolder = "user://GodotSave/Fates_of_the_Fallen"
 filters = PackedStringArray("*.save")
+
+[node name="Loading_panel" type="Panel" parent="."]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0pu00")
 
 [connection signal="resized" from="Info_panel/Container" to="." method="_on_container_resized"]
 [connection signal="pressed" from="Info_panel/Menu/Save_btn" to="." method="_on_save_btn_pressed"]
@@ -401,4 +428,5 @@ filters = PackedStringArray("*.save")
 [connection signal="value_changed" from="Panel/Cards_Panel/Options_GridContainer/Music_Volume/M_Slider" to="Panel/Cards_Panel/Options_GridContainer" method="_on_m_slider_value_changed"]
 [connection signal="item_selected" from="Panel/Cards_Panel/Options_GridContainer/Res_MenuButton" to="Panel/Cards_Panel/Options_GridContainer" method="_on_res_menu_button_item_selected"]
 [connection signal="item_selected" from="Panel/Cards_Panel/Options_GridContainer/Scale_OptionButton" to="Panel/Cards_Panel/Options_GridContainer" method="_on_scale_option_button_item_selected"]
+[connection signal="pressed" from="Panel/Cards_Panel/HUB_btn" to="Panel/Cards_Panel" method="_on_hub_btn_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

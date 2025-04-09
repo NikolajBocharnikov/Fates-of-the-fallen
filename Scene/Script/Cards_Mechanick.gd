@@ -46,6 +46,9 @@ func _process(delta: float) -> void:
 			level_is_up = false
 	
 	if $Card_container/HP_Card_btn.disabled == true:$"../level_up_btn".visible = false
+	
+	if player.get_parent().is_in_group("City"):$HUB_btn.disabled = true
+	else:$HUB_btn.disabled = false
 
 func _on_atk_card_btn_pressed() -> void:
 	CARD_TYPE = "ATK"
@@ -55,3 +58,10 @@ func _on_hp_card_btn_pressed() -> void:
 
 func _on_atk_speed_card_btn_pressed() -> void:
 	CARD_TYPE = "SP"
+
+func _on_hub_btn_pressed() -> void:
+	get_tree().paused = false
+	$".".visible = false
+	$"../../Loading_panel".visible = true
+	player.get_parent().get_node("Enemy_spawner").process_mode = Node.PROCESS_MODE_DISABLED
+	Global.load_scene(player.get_parent(),"City")

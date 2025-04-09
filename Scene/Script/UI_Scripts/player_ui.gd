@@ -30,13 +30,15 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_Exit"):
-		$Info_panel/Menu.visible = !$Info_panel/Menu.visible
 		$Info_panel/Container.visible = !$Info_panel/Container.visible
-		get_tree().paused = !get_tree().paused
+		$Info_panel/Menu.visible = !$Info_panel/Menu.visible
+		if $Info_panel/Menu.visible: get_tree().paused = true
+		else :get_tree().paused = false
 	
 	if Input.is_action_just_pressed("ui_TAB"):
 		$Panel/Cards_Panel.visible = !$Panel/Cards_Panel.visible
-		get_tree().paused = !get_tree().paused
+		if $Panel/Cards_Panel.visible: get_tree().paused = true
+		else: get_tree().paused = false
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:

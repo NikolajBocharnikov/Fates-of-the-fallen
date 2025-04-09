@@ -27,6 +27,6 @@ func _physics_process(delta: float) -> void:
 		spawn_timer = 0
 		var enemy = ENEMY_PREFAB.instantiate()
 		var rand_angle = randf_range(0,PI * 2)
-		enemy.position = global_position + (Vector3.RIGHT * sin(rand_angle) + Vector3.FORWARD * cos(rand_angle)) * 20
 		if root_node !=null:
-			root_node.add_child(enemy)
+			enemy.position = root_node.global_position + (Vector3.RIGHT * sin(rand_angle) + Vector3.FORWARD * cos(rand_angle)) * 20
+			add_child(enemy)

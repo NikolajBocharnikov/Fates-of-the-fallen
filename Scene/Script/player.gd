@@ -11,6 +11,7 @@ var CURRENT_HP:float
 var HIT:bool = false
 
 var is_alive:bool = true
+var go_to_obj:bool = false
 
 func _ready() -> void:
 	CURRENT_HP = float(SaveLoadG.Player_Statistic["HP"])
@@ -34,14 +35,19 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-	elif is_on_floor():
+		go_to_obj = false
+	elif is_on_floor() and !go_to_obj:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	elif $Player_nav.distance_to_target() < 2.0:
+		go_to_obj = false
 	
 	#print(self.rotation.y)
 	
 	move_and_slide()
 	look_at_mouse()
+	go_to_interactible_obj()
+	#print($Player_nav.distance_to_target())
 
 
 func look_at_mouse():
@@ -69,6 +75,29 @@ func look_at_mouse():
 		#self.rotation = self.rotation * Vector3(0,1,1)
 		#print(ray_result.position)
 
+
+func go_to_interactible_obj():
+	var mouse_pos = get_viewport().get_mouse_position()
+	var ray_origin = CAMERA.project_ray_origin(mouse_pos)
+	var ray_dir = ray_origin + CAMERA.project_ray_normal(mouse_pos) * 500
+	
+	var ray_query = PhysicsRayQueryParameters3D.create(ray_origin,ray_dir)
+	
+	ray_query.collide_with_bodies = true
+	
+	var space_state = get_world_3d().direct_space_state
+	var ray_result = space_state.intersect_ray(ray_query)
+	
+	if Input.is_action_just_pressed("interact_btn"):
+		go_to_obj = true
+	
+	if(!ray_result.is_empty() and go_to_obj):
+		var hit_node = ray_result.collider.get_parent().get_node_or_null("Area") as Node3D
+		#print(hit_node)
+		if hit_node == null:return
+		if hit_node.is_in_group("Interacteble"):
+			$Player_nav.set_target_position(hit_node.global_position)
+			velocity = global_position.direction_to($Player_nav.get_next_path_position()) * SPEED
 
 func _on_area_body_entered(body: Node3D) -> void:
 	if !is_on_floor():
