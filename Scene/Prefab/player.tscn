@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dpbddtuuyg528" path="res://Scene/Script/player.gd" id="1_kelma"]
 [ext_resource type="Script" uid="uid://xq1ra584u4ur" path="res://Scene/Script/weapon.gd" id="2_so35y"]
 [ext_resource type="PackedScene" uid="uid://dugu4l4k0gjq1" path="res://Scene/Prefab/bullet.tscn" id="3_pexhn"]
+[ext_resource type="PackedScene" uid="uid://b8n7y5a8t5kst" path="res://Assets/Models/Weapon/Mystic_Crystal_Scepter.glb" id="4_cu2l0"]
 [ext_resource type="PackedScene" uid="uid://fgtlnpux4swd" path="res://Assets/Models/Player_Character.glb" id="4_hf161"]
 [ext_resource type="Script" uid="uid://cibybuxgmqbvu" path="res://Scene/Script/Player_Animation_Script.gd" id="6_auyik"]
 [ext_resource type="AudioStream" uid="uid://cs46t14k6ejcw" path="res://Assets/Sound/GRASS - Run 4 pick Grass.wav" id="7_71yr4"]
@@ -21,9 +22,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kelma"]
 height = 1.68831
-
-[sub_resource type="BoxMesh" id="BoxMesh_j47wa"]
-size = Vector3(0.2, 0.2, 1)
 
 [sub_resource type="Animation" id="Animation_hf161"]
 resource_name = "BackLeft_run"
@@ -3025,12 +3023,11 @@ PLAYER_NODE = NodePath("..")
 SHOOT_POS = NodePath("Bullet_pos")
 SHOOT_RATE = 1.0
 
-[node name="Weapon_Mesh" type="MeshInstance3D" parent="Weapon"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.343426, 0, -0.689939)
-mesh = SubResource("BoxMesh_j47wa")
+[node name="Mystic_Crystal_Scepter" parent="Weapon" instance=ExtResource("4_cu2l0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.433013, 0.25, 0, -0.25, 0.433013, 0, -0.4, -1.3)
 
 [node name="Bullet_pos" type="Node3D" parent="Weapon"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.342477, 0, -1.45641)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, -1.6)
 
 [node name="Visuals" type="Node3D" parent="."]
 
@@ -3038,46 +3035,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.342477, 0, -1.45641)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Visuals/Player_Character/Armature" index="0"]
-bones/0/position = Vector3(-1.0788, 82.1478, 4.87747)
-bones/0/rotation = Quaternion(-0.392195, -0.18462, -0.00922151, 0.901118)
-bones/1/rotation = Quaternion(0.897592, 0.237641, -0.279012, -0.244963)
-bones/2/rotation = Quaternion(0.295033, 0.0174354, -0.0276531, 0.954928)
+bones/0/position = Vector3(3.94935, 78.987, 3.96824)
+bones/0/rotation = Quaternion(-0.390469, 0.0464355, 0.0579675, 0.917615)
+bones/1/rotation = Quaternion(0.942029, 0.233817, -0.218717, -0.100372)
+bones/2/rotation = Quaternion(0.442332, 0.0109596, -0.0435901, 0.895724)
 bones/3/position = Vector3(-5.05103e-06, 34.1623, 5.14076e-06)
-bones/3/rotation = Quaternion(-0.479136, 0.0245709, 0.196318, 0.855152)
-bones/4/rotation = Quaternion(-0.434411, -0.00535665, 0.0106478, 0.900636)
-bones/5/rotation = Quaternion(0.907073, -0.306016, 0.134698, -0.255789)
+bones/3/rotation = Quaternion(-0.500253, 0.228658, 0.209961, 0.808318)
+bones/4/rotation = Quaternion(-0.428189, -0.00482918, 0.0102949, 0.903618)
+bones/5/rotation = Quaternion(0.814543, -0.43159, 0.304948, -0.239285)
 bones/6/position = Vector3(-8.49527e-06, 30.5919, -2.39018e-06)
-bones/6/rotation = Quaternion(0.265726, -0.0126134, 0.025199, 0.963637)
-bones/7/rotation = Quaternion(-0.496256, -0.0739819, -0.231612, 0.833434)
-bones/8/rotation = Quaternion(-0.451949, 0.00389588, -0.0112922, 0.891964)
+bones/6/rotation = Quaternion(0.344288, -0.0156566, 0.0360321, 0.938042)
+bones/7/rotation = Quaternion(-0.519737, -0.085839, -0.240996, 0.815123)
+bones/8/rotation = Quaternion(-0.456107, 0.0466307, -0.0232256, 0.888399)
 bones/9/position = Vector3(1.67843, 10.7088, 7.81106)
-bones/9/rotation = Quaternion(0.366917, -0.142631, -0.0987698, 0.913933)
-bones/10/rotation = Quaternion(0.025125, -0.00597156, 0.0165928, 0.999529)
+bones/9/rotation = Quaternion(0.395143, -0.0616722, -0.0812928, 0.912935)
+bones/10/rotation = Quaternion(0.0719677, 0.0205146, 0.00124658, 0.997195)
 bones/11/position = Vector3(2.76908e-07, 13.3606, -9.29215e-07)
-bones/11/rotation = Quaternion(-0.0306646, 0.0085914, -0.00329446, 0.999487)
+bones/11/rotation = Quaternion(-0.0263213, 0.0093214, -0.00633086, 0.99959)
 bones/12/position = Vector3(3.96255, 2.03889, -0.281374)
-bones/12/rotation = Quaternion(0.413734, 0.629154, -0.489043, 0.440258)
+bones/12/rotation = Quaternion(0.393361, 0.651007, -0.47382, 0.443793)
 bones/13/position = Vector3(6.24658e-07, 15.9343, 1.29942e-07)
-bones/13/rotation = Quaternion(0.58148, 0.227072, -0.0934786, 0.775617)
+bones/13/rotation = Quaternion(0.551183, 0.214954, 0.0114246, 0.80614)
 bones/14/position = Vector3(-1.14676e-05, 20.0862, 1.41508e-06)
-bones/14/rotation = Quaternion(-0.0154083, -0.0205719, 0.122736, 0.992107)
+bones/14/rotation = Quaternion(-0.0201424, -0.0456086, 0.311145, 0.949054)
 bones/15/position = Vector3(-6.55036e-06, 16.4564, 2.585e-05)
-bones/15/rotation = Quaternion(0.0661269, 0.116231, 0.0453214, 0.989982)
+bones/15/rotation = Quaternion(0.0856695, -0.235446, -0.0976507, 0.963167)
 bones/16/position = Vector3(-3.93476, 1.94801, -0.371949)
-bones/16/rotation = Quaternion(-0.537851, 0.468843, -0.332488, -0.616729)
+bones/16/rotation = Quaternion(-0.49575, 0.536811, -0.398117, -0.554589)
 bones/17/position = Vector3(9.80995e-07, 15.6726, -1.72511e-05)
-bones/17/rotation = Quaternion(0.476775, -0.0672358, 0.00549587, 0.876433)
+bones/17/rotation = Quaternion(0.531168, -0.00514697, 0.012857, 0.847154)
 bones/18/position = Vector3(-1.89877e-06, 20.0834, -8.65944e-06)
-bones/18/rotation = Quaternion(-0.0229966, 0.0737606, -0.481778, 0.872881)
+bones/18/rotation = Quaternion(-0.0223847, 0.0779355, -0.5017, 0.861233)
 bones/19/position = Vector3(3.95225e-06, 16.4511, 1.01255e-05)
-bones/19/rotation = Quaternion(0.0781743, -0.218067, 0.0276863, 0.972404)
+bones/19/rotation = Quaternion(0.0709729, -0.28382, 0.00148571, 0.956246)
 bones/20/position = Vector3(-0.0277853, 10.3576, 0.653317)
-bones/20/rotation = Quaternion(-0.0552405, -0.247639, -0.01479, 0.967163)
+bones/20/rotation = Quaternion(0.0306918, 0.00502393, 0.0624143, 0.997566)
 bones/21/position = Vector3(2.60296e-07, 6.80039, 3.55398e-06)
-bones/21/rotation = Quaternion(0.371705, -0.0185314, 0.0172647, 0.928005)
-bones/22/rotation = Quaternion(-0.211679, 1.05392e-08, -0.00204857, 0.977337)
+bones/21/rotation = Quaternion(0.332578, -0.0511073, -0.000538967, 0.94169)
+bones/22/rotation = Quaternion(-0.211679, 1.05528e-08, -0.00204857, 0.977337)
 bones/23/position = Vector3(-0.110762, 6.43995, 11.4449)
-bones/23/rotation = Quaternion(0.50477, -4.16343e-08, 0.004885, 0.86324)
+bones/23/rotation = Quaternion(0.50477, -4.15079e-08, 0.004885, 0.86324)
 
 [node name="AnimationPlayer" parent="Visuals/Player_Character" index="1"]
 libraries = {

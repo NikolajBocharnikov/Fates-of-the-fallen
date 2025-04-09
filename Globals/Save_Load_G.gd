@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 
 
 func save(Profie_Name:String):
-	var file = FileAccess.open(Profie_Name + ".save",FileAccess.WRITE)
+	var file = FileAccess.open(Profie_Name,FileAccess.WRITE)
 	file.store_var(Player_Statistic.duplicate())
 	file.close()
 	

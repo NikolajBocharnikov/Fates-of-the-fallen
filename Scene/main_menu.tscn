@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsoom783tto0b"]
+[gd_scene load_steps=9 format=3 uid="uid://dsoom783tto0b"]
 
 [ext_resource type="Script" uid="uid://dfm2rcbmwn1fl" path="res://Scene/Script/UI_Scripts/Main_Menu_UI.gd" id="1_ftydy"]
 [ext_resource type="AudioStream" uid="uid://b12vuwgthke5n" path="res://Assets/Sound/click-buttons-ui-menu-sounds-effects-button-6-203600.mp3" id="2_87ipw"]
 [ext_resource type="Texture2D" uid="uid://b0cmuf1hdb32i" path="res://Assets/Images/tube-spinner.svg" id="2_hii65"]
+[ext_resource type="Texture2D" uid="uid://bwvfh1873s216" path="res://Assets/Images/Landscape.jpg" id="2_hptlk"]
 [ext_resource type="Theme" uid="uid://bwbvuor4bwca7" path="res://Materials/UI_Theme/Theme_0.tres" id="2_pvidh"]
 [ext_resource type="Texture2D" uid="uid://cuhh5iqajcptt" path="res://Assets/Images/UI_Images/Kenny_UI/Double/Transparent center/panel-transparent-center-002.png" id="3_hptlk"]
+[ext_resource type="AudioStream" uid="uid://c2q5y1k014jak" path="res://Assets/Sound/Ambiance/Ambient 7 .mp3" id="7_oqads"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejkra"]
 texture = ExtResource("3_hptlk")
@@ -24,14 +26,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="PlaceHolder_Panel" type="Panel" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.764706, 0.0156863, 0.109804, 0.341176)
+
+[node name="TextureRect" type="TextureRect" parent="Control/PlaceHolder_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hptlk")
+
+[node name="Panel" type="Panel" parent="Control/PlaceHolder_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="Control"]
 custom_minimum_size = Vector2(200, 0)
@@ -127,6 +149,12 @@ texture = ExtResource("2_hii65")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("2_87ipw")
 
+[node name="Menu_Ambiance" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("7_oqads")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true
+
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"
 initial_position = 1
@@ -134,8 +162,10 @@ ok_button_text = "Open"
 file_mode = 0
 access = 1
 root_subfolder = "user://GodotSave/Fates_of_the_Fallen"
+filters = PackedStringArray("*.save")
 
 [connection signal="pressed" from="Control/Panel/VBoxContainer/Continue_btn" to="." method="_on_continue_btn_pressed"]
 [connection signal="pressed" from="Control/Panel/VBoxContainer/New_Game_btn" to="." method="_on_new_game_btn_pressed"]
 [connection signal="pressed" from="Control/Panel/Exit_btn" to="." method="_on_exit_btn_pressed"]
+[connection signal="canceled" from="FileDialog" to="." method="_on_file_dialog_canceled"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

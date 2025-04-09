@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwvtpua2pdkh2"]
+[gd_scene load_steps=15 format=3 uid="uid://dwvtpua2pdkh2"]
 
 [ext_resource type="Texture2D" uid="uid://b5i2psxxkc73c" path="res://Assets/Images/triangle-bullet.svg" id="1_5g307"]
 [ext_resource type="Script" uid="uid://brqio7in3kvl8" path="res://Scene/Script/UI_Scripts/player_ui.gd" id="1_q25tn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b7x4e7skyvj7r" path="res://Assets/Images/ICONs/Pixel's_icon/Weapon & Tool/Golden Sword.png" id="6_yegcq"]
 [ext_resource type="Texture2D" uid="uid://nlo323dqtl0d" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Heart.png" id="7_adel5"]
 [ext_resource type="Texture2D" uid="uid://dwh3kqyqimmjn" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Rune Stone.png" id="8_0pu00"]
+[ext_resource type="Texture2D" uid="uid://dywobtubvjb2m" path="res://Assets/Images/ICONs/Pixel's_icon/Material/String.png" id="9_adel5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q25tn"]
 
@@ -314,10 +315,72 @@ text = "ATK Rate +0.1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Options_GridContainer" type="GridContainer" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.097
+anchor_top = 0.599
+anchor_right = 0.097
+anchor_bottom = 0.599
+offset_left = 0.255997
+offset_top = -267.152
+offset_right = 256.256
+offset_bottom = -11.152
+
+[node name="Options_lbl" type="Label" parent="Panel/Cards_Panel/Options_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "OPTIONS"
+
+[node name="Music_Volume" type="TextureRect" parent="Panel/Cards_Panel/Options_GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_adel5")
+stretch_mode = 2
+
+[node name="M_Slider" type="HSlider" parent="Panel/Cards_Panel/Options_GridContainer/Music_Volume"]
+layout_mode = 2
+offset_left = 35.0
+offset_top = 7.0
+offset_right = 256.0
+offset_bottom = 23.0
+value = 50.0
+
+[node name="Resolution_lbl" type="Label" parent="Panel/Cards_Panel/Options_GridContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "RESOLUTION"
+horizontal_alignment = 1
+
+[node name="Res_MenuButton" type="OptionButton" parent="Panel/Cards_Panel/Options_GridContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+selected = 1
+item_count = 2
+popup/item_0/text = "1600 х 900"
+popup/item_0/id = 0
+popup/item_1/text = "1280 х 720"
+popup/item_1/id = 1
+
+[node name="Scale_lbl" type="Label" parent="Panel/Cards_Panel/Options_GridContainer"]
+layout_mode = 2
+text = "3D SCALE"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="Panel/Cards_Panel/Options_GridContainer"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Scale: 1"
+popup/item_0/id = 0
+popup/item_1/text = "Scale: 0.5"
+popup/item_1/id = 1
+
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 1
 access = 1
 root_subfolder = "user://GodotSave/Fates_of_the_Fallen"
+filters = PackedStringArray("*.save")
 
 [connection signal="resized" from="Info_panel/Container" to="." method="_on_container_resized"]
 [connection signal="pressed" from="Info_panel/Menu/Save_btn" to="." method="_on_save_btn_pressed"]

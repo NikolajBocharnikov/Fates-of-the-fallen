@@ -22,7 +22,6 @@ func _on_new_game_btn_pressed() -> void:
 	
 	Global.load_scene(self,"City")
 
-
 func _on_exit_btn_pressed() -> void:
 	$Control/AudioStreamPlayer.play()
 	$Control/Loading_panel.visible = true
@@ -38,11 +37,12 @@ func _on_continue_btn_pressed() -> void:
 	await $Control/AudioStreamPlayer.finished
 	$FileDialog.visible = !$FileDialog.visible
 
-
-
 @warning_ignore("unused_parameter")
 func _on_file_dialog_file_selected(path: String) -> void:
-	$Control/Loading_panel.visible = false
+	$Control/Loading_panel.visible = true
 	if SaveLoadG.load_data($FileDialog.current_file) == 1:
 		Global.load_scene(self,"City")
 	#print($FileDialog.current_file)
+
+func _on_file_dialog_canceled() -> void:
+	$Control/Loading_panel.visible = false

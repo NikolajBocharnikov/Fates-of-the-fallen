@@ -116,7 +116,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	SaveLoadG.save(path)
 	#print(path)
 
-
 func _on_level_up_btn_pressed() -> void:
 	get_tree().paused = !get_tree().paused
 	$Panel/Cards_Panel.visible = true
