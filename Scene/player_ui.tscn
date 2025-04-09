@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwvtpua2pdkh2"]
+[gd_scene load_steps=16 format=3 uid="uid://dwvtpua2pdkh2"]
 
 [ext_resource type="Texture2D" uid="uid://b5i2psxxkc73c" path="res://Assets/Images/triangle-bullet.svg" id="1_5g307"]
 [ext_resource type="Script" uid="uid://brqio7in3kvl8" path="res://Scene/Script/UI_Scripts/player_ui.gd" id="1_q25tn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b7x4e7skyvj7r" path="res://Assets/Images/ICONs/Pixel's_icon/Weapon & Tool/Golden Sword.png" id="6_yegcq"]
 [ext_resource type="Texture2D" uid="uid://nlo323dqtl0d" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Heart.png" id="7_adel5"]
 [ext_resource type="Texture2D" uid="uid://dwh3kqyqimmjn" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Rune Stone.png" id="8_0pu00"]
+[ext_resource type="Script" uid="uid://brpfvgij1mf83" path="res://Scene/Script/UI_Scripts/player_options_ui.gd" id="9_0pu00"]
 [ext_resource type="Texture2D" uid="uid://dywobtubvjb2m" path="res://Assets/Images/ICONs/Pixel's_icon/Material/String.png" id="9_adel5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q25tn"]
@@ -326,6 +327,7 @@ offset_left = 0.255997
 offset_top = -267.152
 offset_right = 256.256
 offset_bottom = -11.152
+script = ExtResource("9_0pu00")
 
 [node name="Options_lbl" type="Label" parent="Panel/Cards_Panel/Options_GridContainer"]
 layout_mode = 2
@@ -343,7 +345,8 @@ offset_left = 35.0
 offset_top = 7.0
 offset_right = 256.0
 offset_bottom = 23.0
-value = 50.0
+min_value = -35.0
+max_value = 15.0
 
 [node name="Resolution_lbl" type="Label" parent="Panel/Cards_Panel/Options_GridContainer"]
 layout_mode = 2
@@ -354,19 +357,23 @@ horizontal_alignment = 1
 [node name="Res_MenuButton" type="OptionButton" parent="Panel/Cards_Panel/Options_GridContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-selected = 1
-item_count = 2
-popup/item_0/text = "1600 х 900"
+selected = 0
+item_count = 4
+popup/item_0/text = "1152 х 648"
 popup/item_0/id = 0
 popup/item_1/text = "1280 х 720"
 popup/item_1/id = 1
+popup/item_2/text = "1600 х 900"
+popup/item_2/id = 2
+popup/item_3/text = "1920 х 1080"
+popup/item_3/id = 3
 
 [node name="Scale_lbl" type="Label" parent="Panel/Cards_Panel/Options_GridContainer"]
 layout_mode = 2
 text = "3D SCALE"
 horizontal_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="Panel/Cards_Panel/Options_GridContainer"]
+[node name="Scale_OptionButton" type="OptionButton" parent="Panel/Cards_Panel/Options_GridContainer"]
 layout_mode = 2
 alignment = 1
 selected = 0
@@ -391,4 +398,7 @@ filters = PackedStringArray("*.save")
 [connection signal="pressed" from="Panel/Cards_Panel/Card_container/HP_Card_btn" to="." method="_on_hp_card_btn_pressed"]
 [connection signal="pressed" from="Panel/Cards_Panel/Card_container/HP_Card_btn" to="Panel/Cards_Panel" method="_on_hp_card_btn_pressed"]
 [connection signal="pressed" from="Panel/Cards_Panel/Card_container/ATK_Speed_Card_btn" to="Panel/Cards_Panel" method="_on_atk_speed_card_btn_pressed"]
+[connection signal="value_changed" from="Panel/Cards_Panel/Options_GridContainer/Music_Volume/M_Slider" to="Panel/Cards_Panel/Options_GridContainer" method="_on_m_slider_value_changed"]
+[connection signal="item_selected" from="Panel/Cards_Panel/Options_GridContainer/Res_MenuButton" to="Panel/Cards_Panel/Options_GridContainer" method="_on_res_menu_button_item_selected"]
+[connection signal="item_selected" from="Panel/Cards_Panel/Options_GridContainer/Scale_OptionButton" to="Panel/Cards_Panel/Options_GridContainer" method="_on_scale_option_button_item_selected"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

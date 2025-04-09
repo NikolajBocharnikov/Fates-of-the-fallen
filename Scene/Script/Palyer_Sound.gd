@@ -12,7 +12,7 @@ func play_sound():
 
 func play_attack_sound():
 	var sound_palyer = AudioStreamPlayer3D.new() as AudioStreamPlayer3D
-	sound_palyer.volume_db = -12.0
+	sound_palyer.volume_db = 0.0
 	sound_palyer.stream = wind_atk
 	sound_palyer.autoplay = true
 	add_child(sound_palyer)

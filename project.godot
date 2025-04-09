@@ -22,6 +22,8 @@ SaveLoadG="*res://Globals/Save_Load_G.gd"
 
 [display]
 
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 mouse_cursor/custom_image="uid://be2ofxjndvfh0"
 
 [editor_plugins]

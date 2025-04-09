@@ -11,7 +11,10 @@ var Player_Statistic = {
 	"Atack Speed":1.0,
 	"Atack":1,
 	"Total Killed":0,
-	"Profile Name":"default"
+	"Profile Name":"default",
+	"Resolution":Vector2i(1152,648),
+	"3d_Scale":float(1.0),
+	"Sound_Volume":float(0.0)
 }
 
 var kill_count:int = 0
