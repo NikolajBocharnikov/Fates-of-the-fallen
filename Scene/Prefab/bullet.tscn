@@ -40,9 +40,9 @@ BULLET_SPEED = 0.5
 cast_shadow = 0
 mesh = SubResource("SphereMesh_2xtun")
 
-[node name="Area3D" type="Area3D" parent="Mesh" groups=["Bullet"]]
+[node name="Area3D" type="Area3D" parent="." groups=["Bullet"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000476077, 0, 0)
 shape = SubResource("BoxShape3D_y68o4")
 

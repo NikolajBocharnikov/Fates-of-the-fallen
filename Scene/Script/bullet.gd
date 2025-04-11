@@ -3,6 +3,7 @@ extends Node3D
 @export var BULLET_SPEED:float 
 
 var bullet_dir:Vector3
+var damage:int = 0
 
 func _ready() -> void:
 	$Timer.connect("timeout",queue_free)

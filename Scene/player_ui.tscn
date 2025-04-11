@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwvtpua2pdkh2"]
+[gd_scene load_steps=23 format=3 uid="uid://dwvtpua2pdkh2"]
 
 [ext_resource type="Texture2D" uid="uid://b5i2psxxkc73c" path="res://Assets/Images/triangle-bullet.svg" id="1_5g307"]
 [ext_resource type="Script" uid="uid://brqio7in3kvl8" path="res://Scene/Script/UI_Scripts/player_ui.gd" id="1_q25tn"]
@@ -10,6 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://dwh3kqyqimmjn" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Rune Stone.png" id="8_0pu00"]
 [ext_resource type="Script" uid="uid://brpfvgij1mf83" path="res://Scene/Script/UI_Scripts/player_options_ui.gd" id="9_0pu00"]
 [ext_resource type="Texture2D" uid="uid://dywobtubvjb2m" path="res://Assets/Images/ICONs/Pixel's_icon/Material/String.png" id="9_adel5"]
+[ext_resource type="Texture2D" uid="uid://dxwkkyokpus8i" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Golden Coin.png" id="11_uvjfu"]
+[ext_resource type="Texture2D" uid="uid://d0nx0sv1tgesj" path="res://Assets/Images/ICONs/Pixel's_icon/Ore & Gem/Crystal.png" id="12_b6y0w"]
+[ext_resource type="Texture2D" uid="uid://bp6s2i1b5h1ue" path="res://Assets/Images/ICONs/Pixel's_icon/Ore & Gem/Obsidian.png" id="13_cxaj8"]
+[ext_resource type="Texture2D" uid="uid://cy7nc6rhoqusu" path="res://Assets/Images/ICONs/Pixel's_icon/Ore & Gem/Silver Ingot.png" id="14_oyl28"]
+[ext_resource type="Texture2D" uid="uid://dy8abdb7ufha6" path="res://Assets/Images/ICONs/Pixel's_icon/Potion/Red Potion 2.png" id="15_lxwu3"]
+[ext_resource type="Texture2D" uid="uid://vdb3xavxjdwu" path="res://Assets/Images/ICONs/Pixel's_icon/Potion/Green Potion.png" id="16_468ky"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q25tn"]
 
@@ -360,6 +366,7 @@ horizontal_alignment = 1
 [node name="Res_MenuButton" type="OptionButton" parent="Panel/Cards_Panel/Options_GridContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+alignment = 1
 selected = 0
 item_count = 4
 popup/item_0/text = "1152 х 648"
@@ -398,6 +405,91 @@ offset_top = 0.311951
 offset_right = 127.672
 offset_bottom = 78.312
 text = "Go back to HUB"
+
+[node name="Inv_GridContainer" type="GridContainer" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.882
+anchor_top = 0.642
+anchor_right = 0.882
+anchor_bottom = 0.642
+offset_left = -256.064
+offset_top = -256.016
+offset_right = -0.0640259
+offset_bottom = -0.0160217
+columns = 2
+
+[node name="Coin" type="TextureRect" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("11_uvjfu")
+
+[node name="Coin_lbl" type="Label" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "coin: 0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Crystal" type="TextureRect" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_b6y0w")
+
+[node name="Crystal_lbl" type="Label" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "crystal: 0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Obsidian" type="TextureRect" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("13_cxaj8")
+
+[node name="Obsidian_lbl" type="Label" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Obsidian: 0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Ingot" type="TextureRect" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("14_oyl28")
+
+[node name="Ingot_lbl" type="Label" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ingot: 0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Health_potion" type="TextureRect" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("15_lxwu3")
+
+[node name="Health_potion_lbl" type="Label" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "health potion: 0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Stamina_potion" type="TextureRect" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("16_468ky")
+
+[node name="Stamina_potion_lbl" type="Label" parent="Panel/Cards_Panel/Inv_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Stamina potion: 0"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 1

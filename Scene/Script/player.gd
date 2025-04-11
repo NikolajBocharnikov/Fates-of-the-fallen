@@ -12,9 +12,16 @@ var HIT:bool = false
 
 var is_alive:bool = true
 var go_to_obj:bool = false
+var ray_result_i
 
 func _ready() -> void:
 	CURRENT_HP = float(SaveLoadG.Player_Statistic["HP"])
+
+@warning_ignore("unused_parameter")
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("interact_btn"):
+		go_to_obj = true
+		if !ray_result_i.collider.get_parent().has_node("Area"): go_to_obj=false
 
 func _physics_process(delta: float) -> void:
 	if !is_alive:
@@ -88,13 +95,14 @@ func go_to_interactible_obj():
 	var space_state = get_world_3d().direct_space_state
 	var ray_result = space_state.intersect_ray(ray_query)
 	
-	if Input.is_action_just_pressed("interact_btn"):
-		go_to_obj = true
+	ray_result_i = ray_result
 	
 	if(!ray_result.is_empty() and go_to_obj):
 		var hit_node = ray_result.collider.get_parent().get_node_or_null("Area") as Node3D
 		#print(hit_node)
-		if hit_node == null:return
+		#print(ray_result.collider.get_parent().has_node("Area"))
+		if hit_node == null: return
+		
 		if hit_node.is_in_group("Interacteble"):
 			$Player_nav.set_target_position(hit_node.global_position)
 			velocity = global_position.direction_to($Player_nav.get_next_path_position()) * SPEED

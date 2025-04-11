@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmuvjtdfd1hap"]
+
+[ext_resource type="PackedScene" uid="uid://b8n7y5a8t5kst" path="res://Assets/Models/Weapon/Mystic_Crystal_Scepter.glb" id="1_mufax"]
+
+[node name="Scepters" type="Node3D"]
+
+[node name="Mystic_Crystal_Scepter" parent="." instance=ExtResource("1_mufax")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsjw3ey0tldsp"]
+[gd_scene load_steps=16 format=3 uid="uid://bsjw3ey0tldsp"]
 
 [ext_resource type="PackedScene" uid="uid://dno606fkno6dh" path="res://Scene/Prefab/camera_arm.tscn" id="1_1xcnr"]
 [ext_resource type="ArrayMesh" uid="uid://dfbicr4xpudv2" path="res://Assets/Models/HUB.obj" id="1_2wwxx"]
@@ -6,6 +6,8 @@
 [ext_resource type="Material" uid="uid://dmrn841yukh0e" path="res://Materials/Terrain_material.tres" id="2_3amdw"]
 [ext_resource type="PackedScene" uid="uid://2l2333mn6ex1" path="res://Scene/enemy_spawner.tscn" id="2_sblpm"]
 [ext_resource type="PackedScene" uid="uid://b8qkhb0e6x603" path="res://Scene/Prefab/FX/smoke.tscn" id="3_3amdw"]
+[ext_resource type="Script" uid="uid://6tfu4007i7k0" path="res://Scene/Script/ore_spawner.gd" id="7_ow1sv"]
+[ext_resource type="PackedScene" uid="uid://dci3mnjpcsc6" path="res://Scene/Prefab/Ore.tscn" id="8_75buv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -131,6 +133,15 @@ parameters/Idle_to_Run/current_index = -1
 
 [node name="Enemy_spawner" parent="." instance=ExtResource("2_sblpm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, -3.514)
+
+[node name="Ore_spawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -7.047)
+script = ExtResource("7_ow1sv")
+ORE_PREFAB = ExtResource("8_75buv")
+MAX_AMOUNT = 10
+
+[node name="RayCast3D" type="RayCast3D" parent="Ore_spawner"]
+target_position = Vector3(0, -15, 0)
 
 [editable path="Camera_arm"]
 [editable path="Player"]

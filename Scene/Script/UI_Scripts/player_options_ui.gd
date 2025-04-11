@@ -18,10 +18,23 @@ func _ready() -> void:
 
 func init_saved_settings():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), SaveLoadG.Player_Statistic["Sound_Volume"])
+	$Music_Volume/M_Slider.value = SaveLoadG.Player_Statistic["Sound_Volume"]
+	
 	get_window().set_size(SaveLoadG.Player_Statistic["Resolution"])
 	get_window().set_content_scale_size(SaveLoadG.Player_Statistic["Resolution"])
-	get_viewport().scaling_3d_scale = SaveLoadG.Player_Statistic["3d_Scale"]
+	var selected_res:int = 0
+	for i in Availible_Resolution:
+		if Availible_Resolution[i] == SaveLoadG.Player_Statistic["Resolution"]:
+			$Res_MenuButton.select(selected_res)
+			#print(selected)
+		selected_res += 1
 	
+	get_viewport().scaling_3d_scale = SaveLoadG.Player_Statistic["3d_Scale"]
+	var selected_scale:int = 0
+	for i in Availible_Scale:
+		if Availible_Scale[i] == SaveLoadG.Player_Statistic["3d_Scale"]:
+			$Scale_OptionButton.select(selected_scale)
+		selected_scale += 1
 
 func _on_m_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)

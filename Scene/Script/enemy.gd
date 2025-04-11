@@ -37,7 +37,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_area_entered(area: Area3D) -> void:
 	#print("yes")
-	if area.is_in_group("Bullet"):
-		current_health -= player_attack
+	if area.is_in_group("Bullet") and area.visible:
+		var weapon_damage:int = 0
+		if area.get_parent().damage != null: weapon_damage = area.get_parent().damage
+		current_health -= player_attack + weapon_damage
 		health_bar.value = current_health
 		#print(current_health)
