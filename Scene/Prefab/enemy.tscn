@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgdnfpyslrr0f"]
+[gd_scene load_steps=11 format=3 uid="uid://dgdnfpyslrr0f"]
 
 [ext_resource type="Script" uid="uid://cpot54j0lesjk" path="res://Scene/Script/enemy.gd" id="1_iker5"]
 [ext_resource type="Script" uid="uid://cwn8lknerb44e" path="res://Scene/Script/UI_Scripts/enemy_ui.gd" id="2_w5o04"]
+[ext_resource type="BehaviorTree" uid="uid://e8j1ffr5lqnw" path="res://Globals/Limbo_AI_DATA/Enemy_BT.tres" id="3_ttbl7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5o04"]
 size = Vector3(1, 0.8728, 1)
@@ -15,7 +16,12 @@ albedo_color = Color(0.450536, 0.00967127, 0.0602323, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_iker5"]
 size = Vector3(1.1, 1.71973, 1.1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ttbl7"]
+radius = 10.0
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_ttbl7"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_f26sk"]
 
 [node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_iker5")
@@ -41,6 +47,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bso5d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.640137, 0)
 shape = SubResource("BoxShape3D_iker5")
 
+[node name="Visible_Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visible_Area"]
+shape = SubResource("SphereShape3D_ttbl7")
+
 [node name="UI" type="Control" parent="."]
 z_index = -1
 layout_mode = 3
@@ -59,4 +70,10 @@ value = 100.0
 nine_patch_stretch = true
 texture_progress = SubResource("CanvasTexture_ttbl7")
 
+[node name="BTPlayer" type="BTPlayer" parent="."]
+behavior_tree = ExtResource("3_ttbl7")
+blackboard_plan = SubResource("BlackboardPlan_f26sk")
+
 [connection signal="area_entered" from="Area" to="." method="_on_area_area_entered"]
+[connection signal="body_entered" from="Visible_Area" to="." method="_on_visible_area_body_entered"]
+[connection signal="body_exited" from="Visible_Area" to="." method="_on_visible_area_body_exited"]

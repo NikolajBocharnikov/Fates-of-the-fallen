@@ -13,6 +13,8 @@ var HIT:bool = false
 var is_alive:bool = true
 var go_to_obj:bool = false
 var ray_result_i
+var dash:bool = false
+var dash_time:float = 0.0
 
 func _ready() -> void:
 	CURRENT_HP = float(SaveLoadG.Player_Statistic["HP"])
@@ -40,12 +42,26 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("ui_go_right", "ui_go_left", "ui_backward", "ui_forward")
 	var direction := CAMERA.transform.basis * (Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		if dash:
+			velocity.x = direction.x * SPEED * 5
+			velocity.z = direction.z * SPEED * 5
+			dash_time += snappedf(delta,0.001)
+		else:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		
+		#print(snappedf(delta,0.001))
+		if dash_time >=0.2:
+			#print(dash_time)
+			dash = false
+			dash_time = 0
+		
 		go_to_obj = false
+	
 	elif is_on_floor() and !go_to_obj:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
 	elif $Player_nav.distance_to_target() < 2.0:
 		go_to_obj = false
 	
@@ -55,7 +71,6 @@ func _physics_process(delta: float) -> void:
 	look_at_mouse()
 	go_to_interactible_obj()
 	#print($Player_nav.distance_to_target())
-
 
 func look_at_mouse():
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -81,7 +96,6 @@ func look_at_mouse():
 		#print(ray_result.collider.position)
 		#self.rotation = self.rotation * Vector3(0,1,1)
 		#print(ray_result.position)
-
 
 func go_to_interactible_obj():
 	var mouse_pos = get_viewport().get_mouse_position()

@@ -1,13 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://dwvtpua2pdkh2"]
+[gd_scene load_steps=34 format=3 uid="uid://dwvtpua2pdkh2"]
 
-[ext_resource type="Texture2D" uid="uid://b5i2psxxkc73c" path="res://Assets/Images/triangle-bullet.svg" id="1_5g307"]
 [ext_resource type="Script" uid="uid://brqio7in3kvl8" path="res://Scene/Script/UI_Scripts/player_ui.gd" id="1_q25tn"]
 [ext_resource type="Theme" uid="uid://bwbvuor4bwca7" path="res://Materials/UI_Theme/Theme_0.tres" id="2_5xwoe"]
 [ext_resource type="Shader" uid="uid://cglbdk8lobywl" path="res://Materials/2D shaders/HP_MP_Glass.gdshader" id="2_rj6n4"]
 [ext_resource type="Script" uid="uid://cmv6ofwreb88q" path="res://Scene/Script/Cards_Mechanick.gd" id="3_00pm1"]
+[ext_resource type="Texture2D" uid="uid://cd1qbwtr5y4c4" path="res://Assets/Images/ICONs/Pixel's_icon/Equipment/Iron Boot.png" id="6_cxaj8"]
 [ext_resource type="Texture2D" uid="uid://b7x4e7skyvj7r" path="res://Assets/Images/ICONs/Pixel's_icon/Weapon & Tool/Golden Sword.png" id="6_yegcq"]
 [ext_resource type="Texture2D" uid="uid://nlo323dqtl0d" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Heart.png" id="7_adel5"]
+[ext_resource type="Texture2D" uid="uid://co7iveyfeulxs" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Scroll.png" id="7_oyl28"]
 [ext_resource type="Texture2D" uid="uid://dwh3kqyqimmjn" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Rune Stone.png" id="8_0pu00"]
+[ext_resource type="Texture2D" uid="uid://6wyfu3dtvw31" path="res://Assets/Images/ICONs/Pixel's_icon/Material/Fabric.png" id="8_cxaj8"]
 [ext_resource type="Script" uid="uid://brpfvgij1mf83" path="res://Scene/Script/UI_Scripts/player_options_ui.gd" id="9_0pu00"]
 [ext_resource type="Texture2D" uid="uid://dywobtubvjb2m" path="res://Assets/Images/ICONs/Pixel's_icon/Material/String.png" id="9_adel5"]
 [ext_resource type="Texture2D" uid="uid://dxwkkyokpus8i" path="res://Assets/Images/ICONs/Pixel's_icon/Misc/Golden Coin.png" id="11_uvjfu"]
@@ -49,15 +51,46 @@ shader_parameter/wave_num = 2.0
 shader_parameter/wave_fix_on_border = false
 shader_parameter/height = 0.5
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5g307"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvjfu"]
+bg_color = Color(0.858824, 0.858824, 0.858824, 0.501961)
+skew = Vector2(-0.25, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q25tn"]
-content_margin_left = 25.0
-content_margin_top = 10.0
-content_margin_right = 25.0
-bg_color = Color(0.230912, 0.695116, 0.508385, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
+[sub_resource type="InputEventKey" id="InputEventKey_uvjfu"]
+device = -1
+physical_keycode = 81
+unicode = 113
+
+[sub_resource type="Shortcut" id="Shortcut_b6y0w"]
+events = [SubResource("InputEventKey_uvjfu")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_cxaj8"]
+device = -1
+physical_keycode = 69
+unicode = 101
+
+[sub_resource type="Shortcut" id="Shortcut_oyl28"]
+events = [SubResource("InputEventKey_cxaj8")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxwu3"]
+bg_color = Color(0.858824, 0.858824, 0.858824, 0.501961)
+skew = Vector2(0.25, 0)
+
+[sub_resource type="InputEventKey" id="InputEventKey_oyl28"]
+device = -1
+physical_keycode = 4194325
+
+[sub_resource type="Shortcut" id="Shortcut_lxwu3"]
+events = [SubResource("InputEventKey_oyl28")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_468ky"]
+device = -1
+physical_keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_r6q0k"]
+events = [SubResource("InputEventKey_468ky")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5g307"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pu00"]
 bg_color = Color(0, 0, 0, 1)
@@ -84,11 +117,19 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_q25tn")
 
 [node name="XP_Bar" type="ProgressBar" parent="Info_panel"]
 modulate = Color(0, 0.784314, 0.784314, 1)
+custom_minimum_size = Vector2(380, 0)
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 22.0
+anchors_preset = -1
+anchor_left = 0.338
+anchor_top = 0.958
+anchor_right = 0.668
+anchor_bottom = 0.992
+offset_left = -0.376038
+offset_top = 0.215942
+offset_right = -0.536072
+offset_bottom = 0.18396
 grow_horizontal = 2
+grow_vertical = 0
 show_percentage = false
 
 [node name="XP_Label" type="Label" parent="Info_panel/XP_Bar"]
@@ -133,36 +174,15 @@ text = "Attack Speed:"
 layout_mode = 2
 text = "Kill Count:"
 
-[node name="Menu" type="VBoxContainer" parent="Info_panel"]
-visible = false
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -28.0
-offset_right = 41.0
-offset_bottom = 28.0
-grow_vertical = 2
-
-[node name="Save_btn" type="Button" parent="Info_panel/Menu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Save"
-
-[node name="Exit_btn" type="Button" parent="Info_panel/Menu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Exit"
-
 [node name="Health_Panel" type="Panel" parent="Info_panel"]
 material = SubResource("ShaderMaterial_5xwoe")
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.304
-anchor_top = 0.974
-anchor_right = 0.304
-anchor_bottom = 0.974
+anchor_left = 0.261465
+anchor_top = 0.994062
+anchor_right = 0.261465
+anchor_bottom = 0.994062
 offset_left = -0.208008
 offset_top = -81.152
 offset_right = 79.792
@@ -174,15 +194,148 @@ material = SubResource("ShaderMaterial_a57nb")
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.677
-anchor_top = 0.974
-anchor_right = 0.677
-anchor_bottom = 0.974
+anchor_left = 0.741236
+anchor_top = 0.992
+anchor_right = 0.741236
+anchor_bottom = 0.992518
 offset_left = -79.9041
-offset_top = -81.152
+offset_top = -80.816
 offset_right = 0.0959473
 offset_bottom = -0.152039
 metadata/_edit_use_anchors_ = true
+
+[node name="Item_Panel" type="Panel" parent="Info_panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = -80.0
+offset_right = 288.0
+offset_bottom = 2.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uvjfu")
+
+[node name="Btn_Container" type="HBoxContainer" parent="Info_panel/Item_Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -33.0
+offset_right = 154.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+theme_override_constants/separation = 50
+
+[node name="Heal_me_btn" type="Button" parent="Info_panel/Item_Panel/Btn_Container"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_b6y0w")
+icon = ExtResource("15_lxwu3")
+icon_alignment = 1
+
+[node name="Stamina_me_btn" type="Button" parent="Info_panel/Item_Panel/Btn_Container"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_oyl28")
+icon = ExtResource("16_468ky")
+
+[node name="Q_lbl" type="Label" parent="Info_panel/Item_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.403
+anchor_top = 0.707
+anchor_right = 0.403
+anchor_bottom = 0.707
+offset_left = -0.900009
+offset_top = 0.0259972
+offset_right = 12.1
+offset_bottom = 18.026
+text = "Q"
+
+[node name="E_lbl" type="Label" parent="Info_panel/Item_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.733
+anchor_top = 0.707
+anchor_right = 0.733
+anchor_bottom = 0.707
+offset_left = 0.0999908
+offset_top = 0.0259972
+offset_right = 13.1
+offset_bottom = 18.026
+text = "E"
+
+[node name="Ability_Panel" type="Panel" parent="Info_panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = -80.0
+offset_right = 12.0
+offset_bottom = 2.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lxwu3")
+
+[node name="Btn_Container" type="HBoxContainer" parent="Info_panel/Ability_Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -33.0
+offset_right = 152.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+theme_override_constants/separation = 50
+
+[node name="Dash_btn" type="Button" parent="Info_panel/Ability_Panel/Btn_Container"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_lxwu3")
+icon = ExtResource("6_cxaj8")
+
+[node name="Blast_btn" type="Button" parent="Info_panel/Ability_Panel/Btn_Container"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_r6q0k")
+icon = ExtResource("7_oyl28")
+
+[node name="Dash_lbl" type="Label" parent="Info_panel/Ability_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.423
+anchor_top = 0.793
+anchor_right = 0.423
+anchor_bottom = 0.793
+offset_left = -19.9
+offset_top = -9.026
+offset_right = 20.1
+offset_bottom = 8.974
+text = "Shift"
+
+[node name="Blast_lbl" type="Label" parent="Info_panel/Ability_Panel"]
+custom_minimum_size = Vector2(13, 18)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.793
+anchor_right = 0.75
+anchor_bottom = 0.793
+offset_left = -8.00002
+offset_top = -8.026
+offset_right = 4.99998
+offset_bottom = 9.974
+text = " 1"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -194,38 +347,32 @@ grow_vertical = 2
 theme = ExtResource("2_5xwoe")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5g307")
 
-[node name="level_up_btn" type="Button" parent="Panel"]
+[node name="Lvl_up_lbl" type="Label" parent="Panel"]
 visible = false
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.955
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -109.5
-offset_top = -42.0
-offset_right = 109.5
+anchor_bottom = 0.955
+offset_left = -28.0
+offset_top = -17.84
+offset_right = 28.0
+offset_bottom = 0.159973
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_q25tn")
-text = "LEVEL UP "
-icon_alignment = 2
+text = "Level Up"
 
-[node name="TextureRect" type="TextureRect" parent="Panel/level_up_btn"]
+[node name="TextureRect" type="TextureRect" parent="Panel/Lvl_up_lbl"]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -36.5
-offset_top = -12.0
-offset_right = -8.5
-offset_bottom = 16.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("1_5g307")
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 30.0
+offset_right = 62.0
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_cxaj8")
 
 [node name="Cards_Panel" type="Panel" parent="Panel"]
 visible = false
@@ -397,14 +544,40 @@ popup/item_1/id = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.489
+anchor_top = 0.748
+anchor_right = 0.489
+anchor_bottom = 0.748
+offset_left = -128.328
+offset_top = -77.7041
+offset_right = 127.672
+offset_bottom = 0.29599
+text = "Go back to HUB"
+
+[node name="Save_btn" type="Button" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.489
 anchor_top = 0.856
 anchor_right = 0.489
 anchor_bottom = 0.856
 offset_left = -128.328
-offset_top = 0.311951
+offset_top = -77.688
 offset_right = 127.672
-offset_bottom = 78.312
-text = "Go back to HUB"
+offset_bottom = 0.311951
+text = "Save"
+
+[node name="Exit_btn" type="Button" parent="Panel/Cards_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.489
+anchor_top = 0.965
+anchor_right = 0.489
+anchor_bottom = 0.965
+offset_left = -128.328
+offset_top = -78.3201
+offset_right = 127.672
+offset_bottom = -0.320007
+text = "Exit game"
 
 [node name="Inv_GridContainer" type="GridContainer" parent="Panel/Cards_Panel"]
 layout_mode = 1
@@ -509,9 +682,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0pu00")
 
 [connection signal="resized" from="Info_panel/Container" to="." method="_on_container_resized"]
-[connection signal="pressed" from="Info_panel/Menu/Save_btn" to="." method="_on_save_btn_pressed"]
-[connection signal="pressed" from="Info_panel/Menu/Exit_btn" to="." method="_on_exit_btn_pressed"]
-[connection signal="pressed" from="Panel/level_up_btn" to="." method="_on_level_up_btn_pressed"]
+[connection signal="pressed" from="Info_panel/Ability_Panel/Btn_Container/Dash_btn" to="." method="_on_dash_btn_pressed"]
 [connection signal="pressed" from="Panel/Cards_Panel/Close_btn" to="." method="_on_close_btn_pressed"]
 [connection signal="pressed" from="Panel/Cards_Panel/Card_container/ATK_Card_btn" to="Panel/Cards_Panel" method="_on_atk_card_btn_pressed"]
 [connection signal="pressed" from="Panel/Cards_Panel/Card_container/HP_Card_btn" to="." method="_on_hp_card_btn_pressed"]
@@ -521,4 +692,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0pu00")
 [connection signal="item_selected" from="Panel/Cards_Panel/Options_GridContainer/Res_MenuButton" to="Panel/Cards_Panel/Options_GridContainer" method="_on_res_menu_button_item_selected"]
 [connection signal="item_selected" from="Panel/Cards_Panel/Options_GridContainer/Scale_OptionButton" to="Panel/Cards_Panel/Options_GridContainer" method="_on_scale_option_button_item_selected"]
 [connection signal="pressed" from="Panel/Cards_Panel/HUB_btn" to="Panel/Cards_Panel" method="_on_hub_btn_pressed"]
-[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="Panel/Cards_Panel/Save_btn" to="Panel/Cards_Panel" method="_on_save_btn_pressed"]
+[connection signal="pressed" from="Panel/Cards_Panel/Exit_btn" to="Panel/Cards_Panel" method="_on_exit_btn_pressed"]
+[connection signal="file_selected" from="FileDialog" to="Panel/Cards_Panel" method="_on_file_dialog_file_selected"]

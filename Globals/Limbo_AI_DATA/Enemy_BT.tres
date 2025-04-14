@@ -1,0 +1,55 @@
+[gd_resource type="BehaviorTree" load_steps=17 format=3 uid="uid://e8j1ffr5lqnw"]
+
+[ext_resource type="Script" uid="uid://cbeoxgace30tn" path="res://ai/tasks/Pick_Rand_Pos.gd" id="1_qnxjq"]
+[ext_resource type="Script" uid="uid://c6grlkq2nu46x" path="res://ai/tasks/Move_to_pos.gd" id="2_rxgsj"]
+[ext_resource type="Script" uid="uid://dj56m4l0abof2" path="res://ai/tasks/Move_to_Player.gd" id="3_qnxjq"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_xs6wa"]
+
+[sub_resource type="BTAction" id="BTAction_rxgsj"]
+custom_name = "Pick_Random_Pos"
+script = ExtResource("1_qnxjq")
+patrole_radius = 5.0
+dir_point = &"dir"
+
+[sub_resource type="BTAction" id="BTAction_qnxjq"]
+script = ExtResource("2_rxgsj")
+target_pos = &"dir"
+tolerance = 1
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_rxgsj"]
+
+[sub_resource type="BTSequence" id="BTSequence_xs6wa"]
+custom_name = "Random_Move"
+children = [SubResource("BTAction_rxgsj"), SubResource("BTAction_qnxjq"), SubResource("BTRandomWait_rxgsj")]
+
+[sub_resource type="BTAction" id="BTAction_uublk"]
+script = ExtResource("3_qnxjq")
+
+[sub_resource type="BTWait" id="BTWait_qnxjq"]
+duration = 2.0
+
+[sub_resource type="BTSequence" id="BTSequence_uublk"]
+custom_name = "Attack"
+children = [SubResource("BTWait_qnxjq")]
+
+[sub_resource type="BTSequence" id="BTSequence_qnxjq"]
+custom_name = "Go_to"
+children = [SubResource("BTAction_uublk"), SubResource("BTSequence_uublk")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_uublk"]
+
+[sub_resource type="BTSequence" id="BTSequence_5rsno"]
+custom_name = "Lost_player"
+children = [SubResource("BTRandomWait_uublk")]
+
+[sub_resource type="BTSelector" id="BTSelector_urtvw"]
+custom_name = "See_Player"
+children = [SubResource("BTSequence_qnxjq"), SubResource("BTSequence_5rsno")]
+
+[sub_resource type="BTSelector" id="BTSelector_maqvb"]
+children = [SubResource("BTSequence_xs6wa"), SubResource("BTSelector_urtvw")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_xs6wa")
+root_task = SubResource("BTSelector_maqvb")

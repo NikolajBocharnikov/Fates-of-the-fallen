@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 			$Card_container/ATK_Speed_Card_btn.disabled = true
 			level_is_up = false
 	
-	if $Card_container/HP_Card_btn.disabled == true:$"../level_up_btn".visible = false
+	if $Card_container/HP_Card_btn.disabled == true:$"../Lvl_up_lbl".visible = false
 	
 	if player.get_parent().is_in_group("City"):$HUB_btn.disabled = true
 	else:$HUB_btn.disabled = false
@@ -65,3 +65,13 @@ func _on_hub_btn_pressed() -> void:
 	$"../../Loading_panel".visible = true
 	player.get_parent().get_node("Enemy_spawner").process_mode = Node.PROCESS_MODE_DISABLED
 	Global.load_scene(player.get_parent(),"City")
+
+func _on_save_btn_pressed() -> void:
+	$"../../FileDialog".visible = !$"../../FileDialog".visible
+
+func _on_exit_btn_pressed() -> void:
+	get_tree().quit()
+
+func _on_file_dialog_file_selected(path: String) -> void:
+	SaveLoadG.save(path)
+	#print(path)

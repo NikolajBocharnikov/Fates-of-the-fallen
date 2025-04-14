@@ -29,13 +29,8 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_Exit"):
+	if Input.is_action_just_pressed("ui_TAB") or Input.is_action_just_pressed("ui_Exit"):
 		$Info_panel/Container.visible = !$Info_panel/Container.visible
-		$Info_panel/Menu.visible = !$Info_panel/Menu.visible
-		if $Info_panel/Menu.visible: get_tree().paused = true
-		else :get_tree().paused = false
-	
-	if Input.is_action_just_pressed("ui_TAB"):
 		$Panel/Cards_Panel.visible = !$Panel/Cards_Panel.visible
 		if $Panel/Cards_Panel.visible: get_tree().paused = true
 		else: get_tree().paused = false
@@ -51,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	if level_up() == 1:
 		level.text = "Level: " + str(SaveLoadG.Player_Statistic["Level"])
 		$Info_panel/XP_Bar.max_value = pow(SaveLoadG.Player_Statistic["Level"],1.8) * 100
-		$Panel/level_up_btn.visible = true
+		$Panel/Lvl_up_lbl.visible = true
 		$Panel/Cards_Panel.LEVEL = SaveLoadG.Player_Statistic["Level"]
 		#print($Panel/Cards_Panel.LEVEL)
 		#print($Panel/Cards_Panel.CURRENT_LEVEL)
@@ -108,25 +103,9 @@ func _on_container_resized() -> void:
 		
 		screen_size = $Info_panel.size
 
-func _on_save_btn_pressed() -> void:
-	$FileDialog.visible = !$FileDialog.visible
-
-func _on_exit_btn_pressed() -> void:
-	get_tree().quit()
-
-func _on_file_dialog_file_selected(path: String) -> void:
-	SaveLoadG.save(path)
-	#print(path)
-
-func _on_level_up_btn_pressed() -> void:
-	get_tree().paused = !get_tree().paused
-	$Panel/Cards_Panel.visible = true
-
-
 func _on_close_btn_pressed() -> void:
 	get_tree().paused = !get_tree().paused
 	$Panel/Cards_Panel.visible = false
-
 
 func _on_hp_card_btn_pressed() -> void:
 	var player = player_ui.get_parent()
@@ -135,3 +114,7 @@ func _on_hp_card_btn_pressed() -> void:
 	CURRENT_HEALTH = player.CURRENT_HP / float(SaveLoadG.Player_Statistic["HP"])
 	if player.CURRENT_HP > 0:
 		$Info_panel/Health_Panel.material.set("shader_parameter/height",CURRENT_HEALTH) 
+
+func _on_dash_btn_pressed() -> void:
+	var player = player_ui.get_parent()
+	player.dash = true
