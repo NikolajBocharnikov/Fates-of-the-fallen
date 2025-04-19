@@ -17,7 +17,7 @@ var dash:bool = false
 var dash_time:float = 0.0
 
 func _ready() -> void:
-	CURRENT_HP = float(SaveLoadG.Player_Statistic["HP"])
+	CURRENT_HP = float(GData.GAME_DATA["HP"])
 
 @warning_ignore("unused_parameter")
 func _input(event: InputEvent) -> void:

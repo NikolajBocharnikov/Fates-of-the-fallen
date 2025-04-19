@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgdnfpyslrr0f"]
+[gd_scene load_steps=13 format=3 uid="uid://dgdnfpyslrr0f"]
 
 [ext_resource type="Script" uid="uid://cpot54j0lesjk" path="res://Scene/Script/enemy.gd" id="1_iker5"]
 [ext_resource type="Script" uid="uid://cwn8lknerb44e" path="res://Scene/Script/UI_Scripts/enemy_ui.gd" id="2_w5o04"]
@@ -19,7 +19,14 @@ size = Vector3(1.1, 1.71973, 1.1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_ttbl7"]
 radius = 10.0
 
+[sub_resource type="Gradient" id="Gradient_ttbl7"]
+colors = PackedColorArray(0.787584, 0.136445, 0.202122, 1, 0.548604, 0.683183, 0.0813677, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f26sk"]
+gradient = SubResource("Gradient_ttbl7")
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_ttbl7"]
+diffuse_texture = SubResource("GradientTexture1D_f26sk")
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_f26sk"]
 
@@ -51,6 +58,9 @@ shape = SubResource("BoxShape3D_iker5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visible_Area"]
 shape = SubResource("SphereShape3D_ttbl7")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -30, 0)
 
 [node name="UI" type="Control" parent="."]
 z_index = -1

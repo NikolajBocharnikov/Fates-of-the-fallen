@@ -18,12 +18,12 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://Globals/Global.gd"
-SaveLoadG="*res://Globals/Save_Load_G.gd"
+GData="*res://Globals/G_Data.gd"
 
 [display]
 
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
+window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://be2ofxjndvfh0"
 
 [editor_plugins]

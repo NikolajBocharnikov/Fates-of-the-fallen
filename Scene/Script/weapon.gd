@@ -11,7 +11,7 @@ var root_node:Node3D
 var shoot_timer:float
 
 func _ready() -> void:
-	SHOOT_RATE = SaveLoadG.Player_Statistic["Atack Speed"]
+	SHOOT_RATE = GData.GAME_DATA["Atack Speed"]
 	if PLAYER_NODE.get_parent_node_3d() != null:
 		root_node = PLAYER_NODE.get_parent_node_3d()
 

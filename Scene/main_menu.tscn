@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsoom783tto0b"]
+[gd_scene load_steps=15 format=3 uid="uid://dsoom783tto0b"]
 
 [ext_resource type="Script" uid="uid://dfm2rcbmwn1fl" path="res://Scene/Script/UI_Scripts/Main_Menu_UI.gd" id="1_ftydy"]
 [ext_resource type="AudioStream" uid="uid://b12vuwgthke5n" path="res://Assets/Sound/click-buttons-ui-menu-sounds-effects-button-6-203600.mp3" id="2_87ipw"]
@@ -6,7 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://bwvfh1873s216" path="res://Assets/Images/Landscape.jpg" id="2_hptlk"]
 [ext_resource type="Theme" uid="uid://bwbvuor4bwca7" path="res://Materials/UI_Theme/Theme_0.tres" id="2_pvidh"]
 [ext_resource type="Texture2D" uid="uid://cuhh5iqajcptt" path="res://Assets/Images/UI_Images/Kenny_UI/Double/Transparent center/panel-transparent-center-002.png" id="3_hptlk"]
+[ext_resource type="Script" uid="uid://brpfvgij1mf83" path="res://Scene/Script/UI_Scripts/player_options_ui.gd" id="5_ejkra"]
+[ext_resource type="Texture2D" uid="uid://dywobtubvjb2m" path="res://Assets/Images/ICONs/Pixel's_icon/Material/String.png" id="6_yok32"]
+[ext_resource type="Script" uid="uid://b4hvmk8t0qkgu" path="res://addons/proton_control_animation/src/proton_control_animation.gd" id="7_klvvj"]
 [ext_resource type="AudioStream" uid="uid://c2q5y1k014jak" path="res://Assets/Sound/Ambiance/Ambient 7 .mp3" id="7_oqads"]
+[ext_resource type="Script" uid="uid://bi4omyv2xson" path="res://addons/proton_control_animation/src/animations/scale.gd" id="8_47k5r"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejkra"]
 texture = ExtResource("3_hptlk")
@@ -14,6 +18,28 @@ texture_margin_left = 40.0
 texture_margin_top = 40.0
 texture_margin_right = 40.0
 texture_margin_bottom = 40.0
+
+[sub_resource type="Resource" id="Resource_47k5r"]
+script = ExtResource("8_47k5r")
+from = 2
+from_scale = Vector2(0, 0)
+to = 2
+to_scale = Vector2(1, 1)
+easing = 2
+transition = 4
+default_duration = 1.0
+metadata/_custom_type_script = "uid://bi4omyv2xson"
+
+[sub_resource type="Resource" id="Resource_klvvj"]
+script = ExtResource("8_47k5r")
+from = 2
+from_scale = Vector2(1, 1)
+to = 2
+to_scale = Vector2(0, 0)
+easing = 2
+transition = 4
+default_duration = 1.0
+metadata/_custom_type_script = "uid://bi4omyv2xson"
 
 [node name="Main_menu" type="Node"]
 script = ExtResource("1_ftydy")
@@ -108,6 +134,120 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Exit"
 
+[node name="Options_Panel" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 300.0
+offset_top = 200.0
+offset_right = -52.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 200)
+theme = ExtResource("2_pvidh")
+
+[node name="Options_GridContainer" type="GridContainer" parent="Control/Options_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.175
+anchor_right = 0.42
+anchor_bottom = 0.842
+offset_bottom = 0.199982
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_ejkra")
+
+[node name="Options_lbl" type="Label" parent="Control/Options_Panel/Options_GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "OPTIONS"
+
+[node name="Music_Volume" type="TextureRect" parent="Control/Options_Panel/Options_GridContainer"]
+layout_mode = 2
+texture = ExtResource("6_yok32")
+stretch_mode = 2
+
+[node name="M_Slider" type="HSlider" parent="Control/Options_Panel/Options_GridContainer/Music_Volume"]
+layout_mode = 2
+offset_left = 35.0
+offset_top = 7.0
+offset_right = 256.0
+offset_bottom = 23.0
+min_value = -35.0
+max_value = 15.0
+
+[node name="Resolution_lbl" type="Label" parent="Control/Options_Panel/Options_GridContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "RESOLUTION"
+horizontal_alignment = 1
+
+[node name="Res_MenuButton" type="OptionButton" parent="Control/Options_Panel/Options_GridContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+selected = 0
+item_count = 4
+popup/item_0/text = "1152 х 648"
+popup/item_0/id = 0
+popup/item_1/text = "1280 х 720"
+popup/item_1/id = 1
+popup/item_2/text = "1600 х 900"
+popup/item_2/id = 2
+popup/item_3/text = "1920 х 1080"
+popup/item_3/id = 3
+
+[node name="Scale_lbl" type="Label" parent="Control/Options_Panel/Options_GridContainer"]
+layout_mode = 2
+text = "3D SCALE"
+horizontal_alignment = 1
+
+[node name="Scale_OptionButton" type="OptionButton" parent="Control/Options_Panel/Options_GridContainer"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Scale: 1"
+popup/item_0/id = 0
+popup/item_1/text = "Scale: 0.5"
+popup/item_1/id = 1
+
+[node name="Close_btn" type="Button" parent="Control/Options_Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.941
+anchor_top = 0.007
+anchor_right = 0.997
+anchor_bottom = 0.136
+offset_left = 0.199951
+offset_top = 0.2
+offset_right = 44.4
+offset_bottom = 51.6
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 40
+text = "X"
+
+[node name="Scale_Up" type="Node" parent="Control/Options_Panel" node_paths=PackedStringArray("target")]
+script = ExtResource("7_klvvj")
+target = NodePath("..")
+animation = SubResource("Resource_47k5r")
+duration = 0.3
+on_show = true
+metadata/_custom_type_script = "uid://b4hvmk8t0qkgu"
+
+[node name="Scale_Down" type="Node" parent="Control/Options_Panel" node_paths=PackedStringArray("target")]
+script = ExtResource("7_klvvj")
+target = NodePath("..")
+animation = SubResource("Resource_klvvj")
+duration = 0.3
+on_hide = true
+metadata/_custom_type_script = "uid://b4hvmk8t0qkgu"
+
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 10
@@ -166,6 +306,11 @@ filters = PackedStringArray("*.save")
 
 [connection signal="pressed" from="Control/Panel/VBoxContainer/Continue_btn" to="." method="_on_continue_btn_pressed"]
 [connection signal="pressed" from="Control/Panel/VBoxContainer/New_Game_btn" to="." method="_on_new_game_btn_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/Options_btn" to="." method="_on_options_btn_pressed"]
 [connection signal="pressed" from="Control/Panel/Exit_btn" to="." method="_on_exit_btn_pressed"]
+[connection signal="value_changed" from="Control/Options_Panel/Options_GridContainer/Music_Volume/M_Slider" to="Control/Options_Panel/Options_GridContainer" method="_on_m_slider_value_changed"]
+[connection signal="item_selected" from="Control/Options_Panel/Options_GridContainer/Res_MenuButton" to="Control/Options_Panel/Options_GridContainer" method="_on_res_menu_button_item_selected"]
+[connection signal="item_selected" from="Control/Options_Panel/Options_GridContainer/Scale_OptionButton" to="Control/Options_Panel/Options_GridContainer" method="_on_scale_option_button_item_selected"]
+[connection signal="pressed" from="Control/Options_Panel/Close_btn" to="." method="_on_close_btn_pressed"]
 [connection signal="canceled" from="FileDialog" to="." method="_on_file_dialog_canceled"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

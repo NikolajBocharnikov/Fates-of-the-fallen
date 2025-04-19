@@ -11,7 +11,9 @@ var xp_scene:PackedScene = preload("res://Scene/Prefab/xp_orb.tscn")
 
 var player:Node3D = null
 var current_health:int = 0
+var snaped_to_ground:bool = false
 
+#USED in LimboAI Enemy BT
 var patruling:bool = false
 var finished_patrole:bool = false
 var see_player:bool = false
@@ -24,10 +26,14 @@ func  _ready() -> void:
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	if current_health <= 0 : #Death of enemy
-		SaveLoadG.Player_Statistic["Total Killed"] += 1
+		GData.GAME_DATA["Total Killed"] += 1
 		var scene = xp_scene.instantiate() #XP_Scene
 		add_child(scene)
 		queue_free()
+	
+	if $RayCast3D.is_colliding() and !snaped_to_ground:
+		global_position = $RayCast3D.get_collision_point()
+		snaped_to_ground = true
 	
 	move_and_slide()
 
@@ -55,12 +61,18 @@ func move_to_player():
 			#print(self.global_position.distance_to(player.global_position))
 		if self.global_position.distance_to(player.global_position) < 2:
 			in_akt_range = true
-			velocity = Vector3.ZERO
-			print("In ATK Range")
+			#print("In ATK Range")
 		else:in_akt_range = false
 
+func jump_ATK(vel:Vector3):
+	var rand_wait = randf_range(0.3,0.8)
+	await get_tree().create_timer(rand_wait).timeout
+	velocity = vel * 5 + Vector3.UP
+	await get_tree().create_timer(0.4).timeout
+	velocity = Vector3.ZERO
+
 func _on_area_area_entered(area: Area3D) -> void:
-	var player_attack = SaveLoadG.Player_Statistic["Atack"]
+	var player_attack = GData.GAME_DATA["Atack"]
 	#print("yes")
 	if area.is_in_group("Bullet") and area.visible:
 		var weapon_damage:int = 0

@@ -29,7 +29,6 @@ func _on_exit_btn_pressed() -> void:
 	await $Control/AudioStreamPlayer.finished
 	get_tree().quit()
 
-
 func _on_continue_btn_pressed() -> void:
 	$Control/AudioStreamPlayer.play()
 	$Control/Loading_panel.visible = true
@@ -40,9 +39,16 @@ func _on_continue_btn_pressed() -> void:
 @warning_ignore("unused_parameter")
 func _on_file_dialog_file_selected(path: String) -> void:
 	$Control/Loading_panel.visible = true
-	if SaveLoadG.load_data($FileDialog.current_file) == 1:
+	if GData.load_data($FileDialog.current_file) == 1:
+		$Control/Options_Panel/Options_GridContainer.init_saved_settings()
 		Global.load_scene(self,"City")
 	#print($FileDialog.current_file)
 
 func _on_file_dialog_canceled() -> void:
 	$Control/Loading_panel.visible = false
+
+func _on_options_btn_pressed() -> void:
+	$Control/Options_Panel.visible = !$Control/Options_Panel.visible
+
+func _on_close_btn_pressed() -> void:
+	$Control/Options_Panel.visible = false

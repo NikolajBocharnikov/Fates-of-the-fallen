@@ -1,15 +1,15 @@
 [gd_resource type="Resource" load_steps=9 format=3 uid="uid://byij6b1x5yecb"]
 
 [ext_resource type="Script" uid="uid://cjsirac1827tg" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse.gd" id="1_0c186"]
-[ext_resource type="BoxMesh" uid="uid://cc3pyc42ola15" path="res://Assets/Models/Box.tres" id="1_lhktw"]
 [ext_resource type="Script" uid="uid://c6btkf1v8d8pn" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse_LOD_variant.gd" id="2_g8egc"]
+[ext_resource type="PackedScene" uid="uid://dijceexhjxrot" path="res://Assets/Models/Grass_Mid.glb" id="2_i35h2"]
 [ext_resource type="Script" uid="uid://bnsd2fyntembv" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse_plant.gd" id="3_i35h2"]
 [ext_resource type="Script" uid="uid://ckg16wf0ebcts" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse_plant_state.gd" id="4_s7en8"]
 
 [sub_resource type="Resource" id="Resource_443wm"]
 resource_name = "Greenhouse_LODVariant"
 script = ExtResource("2_g8egc")
-mesh = ExtResource("1_lhktw")
+spawned_spatial = ExtResource("2_i35h2")
 cast_shadow = 1
 metadata/class = "Greenhouse_LODVariant"
 
@@ -23,7 +23,7 @@ mesh/mesh_LOD_max_capacity = 100
 mesh/mesh_LOD_min_size = 1.0
 octree/octree_reconfigure_button = false
 octree/octree_recenter_button = false
-density/density_per_units = 500.0
+density/density_per_units = 4000.0
 scale/scale_scaling_type = 0
 scale/scale_range = [Vector3(1, 1, 1), Vector3(1, 1, 1)]
 up_vector/up_vector_primary_type = 2

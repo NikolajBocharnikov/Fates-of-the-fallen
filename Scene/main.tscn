@@ -85,6 +85,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4602, 13.6886, -7.29574)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083149, 13.9232, 0.0302658)
 CAMERA = NodePath("../Camera_arm/Camera3D")
 
+[node name="Swords" parent="Player/Weapon" index="1"]
+transform = Transform3D(0.5, 0, 0, 0, 0.0868258, 0.492404, 0, -0.492404, 0.0868258, 0, -0.4, -1)
+
 [node name="Skeleton3D" parent="Player/Visuals/Player_Character/Armature" index="0"]
 bones/0/position = Vector3(-0.327109, 85.4754, 1.89108)
 bones/0/rotation = Quaternion(-0.302207, 0.0938974, 0.0938974, 0.943948)
@@ -132,7 +135,7 @@ parameters/Idle_to_Run/current_state = ""
 parameters/Idle_to_Run/current_index = -1
 
 [node name="Enemy_spawner" parent="." instance=ExtResource("2_sblpm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, -3.514)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -3.514)
 
 [node name="Ore_spawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -7.047)

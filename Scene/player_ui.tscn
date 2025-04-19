@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dwvtpua2pdkh2"]
+[gd_scene load_steps=37 format=3 uid="uid://dwvtpua2pdkh2"]
 
 [ext_resource type="Script" uid="uid://brqio7in3kvl8" path="res://Scene/Script/UI_Scripts/player_ui.gd" id="1_q25tn"]
 [ext_resource type="Theme" uid="uid://bwbvuor4bwca7" path="res://Materials/UI_Theme/Theme_0.tres" id="2_5xwoe"]
@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://cy7nc6rhoqusu" path="res://Assets/Images/ICONs/Pixel's_icon/Ore & Gem/Silver Ingot.png" id="14_oyl28"]
 [ext_resource type="Texture2D" uid="uid://dy8abdb7ufha6" path="res://Assets/Images/ICONs/Pixel's_icon/Potion/Red Potion 2.png" id="15_lxwu3"]
 [ext_resource type="Texture2D" uid="uid://vdb3xavxjdwu" path="res://Assets/Images/ICONs/Pixel's_icon/Potion/Green Potion.png" id="16_468ky"]
+[ext_resource type="Script" uid="uid://b4hvmk8t0qkgu" path="res://addons/proton_control_animation/src/proton_control_animation.gd" id="19_lxwu3"]
+[ext_resource type="Script" uid="uid://bi4omyv2xson" path="res://addons/proton_control_animation/src/animations/scale.gd" id="20_468ky"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q25tn"]
 
@@ -91,6 +93,17 @@ unicode = 49
 events = [SubResource("InputEventKey_468ky")]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5g307"]
+
+[sub_resource type="Resource" id="Resource_r6q0k"]
+script = ExtResource("20_468ky")
+from = 2
+from_scale = Vector2(0, 0)
+to = 2
+to_scale = Vector2(1, 1)
+easing = 2
+transition = 4
+default_duration = 1.0
+metadata/_custom_type_script = "uid://bi4omyv2xson"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pu00"]
 bg_color = Color(0, 0, 0, 1)
@@ -382,6 +395,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(576, 324)
 script = ExtResource("3_00pm1")
 
 [node name="Close_btn" type="Button" parent="Panel/Cards_Panel"]
@@ -582,15 +596,15 @@ text = "Exit game"
 [node name="Inv_GridContainer" type="GridContainer" parent="Panel/Cards_Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.882
+anchor_left = 0.907
 anchor_top = 0.642
-anchor_right = 0.882
+anchor_right = 0.907
 anchor_bottom = 0.642
-offset_left = -256.064
-offset_top = -256.016
-offset_right = -0.0640259
+offset_left = -284.864
+offset_top = -147.016
+offset_right = 0.135986
 offset_bottom = -0.0160217
-columns = 2
+columns = 4
 
 [node name="Coin" type="TextureRect" parent="Panel/Cards_Panel/Inv_GridContainer"]
 layout_mode = 2
@@ -663,6 +677,14 @@ size_flags_horizontal = 0
 text = "Stamina potion: 0"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="Scale_Up" type="Node" parent="Panel/Cards_Panel" node_paths=PackedStringArray("target")]
+script = ExtResource("19_lxwu3")
+target = NodePath("..")
+animation = SubResource("Resource_r6q0k")
+duration = 0.3
+on_show = true
+metadata/_custom_type_script = "uid://b4hvmk8t0qkgu"
 
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 1

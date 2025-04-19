@@ -6,26 +6,19 @@ extends Control
 @onready var atack_speed: Label = $Info_panel/Container/Atack_speed
 @onready var kill_count: Label = $Info_panel/Container/Kill_Count
 
-var CURRENT_HEALTH:float
+#var CURRENT_HEALTH:float
+var PLAYER:Node3D
 
-var kill_count_var:int = 0
-var screen_size
+var screen_size:Vector2
 var panel_is_opened:bool = false
 var lvl_up_btn_is_visible = false
 
 func _ready() -> void:
-	
 	screen_size = $Info_panel.size
+	PLAYER = player_ui.get_parent()
 	
-	SaveLoadG.connect("Kill_count_changed",enemy_is_killed)
-	
-	health.text = health.text + str(SaveLoadG.Player_Statistic["HP"])
-	level.text = level.text + str(SaveLoadG.Player_Statistic["Level"])
-	atack_speed.text = atack_speed.text + str(SaveLoadG.Player_Statistic["Atack Speed"])
-	kill_count.text = kill_count.text + str(SaveLoadG.Player_Statistic["Total Killed"])
-	kill_count_var = SaveLoadG.Player_Statistic["Total Killed"]
-	
-	hp_sp_init()
+	update_text()
+	update_hp_sp()
 
 @warning_ignore("unused_parameter")
 func _input(event: InputEvent) -> void:
@@ -37,50 +30,50 @@ func _input(event: InputEvent) -> void:
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
-	$Info_panel/XP_Bar/XP_Label.text = str(SaveLoadG.Player_Statistic["XP"]) + "/" + str(snappedf(pow(SaveLoadG.Player_Statistic["Level"],1.8) * 100,0.1))
-	$Info_panel/XP_Bar.value = SaveLoadG.Player_Statistic["XP"]
+	$Info_panel/XP_Bar/XP_Label.text = str(GData.GAME_DATA["XP"]) + "/" + str(snappedf(pow(GData.GAME_DATA["Level"],1.8) * 100,0.1))
+	$Info_panel/XP_Bar.value = GData.GAME_DATA["XP"]
 	
 	if $Panel/Cards_Panel.visible == false: $Info_panel.top_level = true
 	else: $Info_panel.top_level = false
 	
-	if level_up() == 1:
-		level.text = "Level: " + str(SaveLoadG.Player_Statistic["Level"])
-		$Info_panel/XP_Bar.max_value = pow(SaveLoadG.Player_Statistic["Level"],1.8) * 100
+	update_btn_property()
+	update_text()
+	on_level_up()
+	update_hp_sp()
+
+func update_btn_property():
+	if $Panel/Cards_Panel.visible:
+		$Info_panel/Item_Panel/Btn_Container/Heal_me_btn.disabled = true
+		$Info_panel/Item_Panel/Btn_Container/Stamina_me_btn.disabled = true
+		$Info_panel/Ability_Panel/Btn_Container/Dash_btn.disabled = true
+		$Info_panel/Ability_Panel/Btn_Container/Blast_btn.disabled = true
+	else:
+		$Info_panel/Item_Panel/Btn_Container/Heal_me_btn.disabled = false
+		$Info_panel/Item_Panel/Btn_Container/Stamina_me_btn.disabled = false
+		$Info_panel/Ability_Panel/Btn_Container/Dash_btn.disabled = false
+		$Info_panel/Ability_Panel/Btn_Container/Blast_btn.disabled = false
+
+func update_text():
+	health.text = "Health:" + str(GData.GAME_DATA["HP"])
+	level.text = "Level:" + str(GData.GAME_DATA["Level"])
+	atack_speed.text = "Attack Speed:" + str(GData.GAME_DATA["Atack Speed"])
+	kill_count.text = "Kill Count:" + str(GData.GAME_DATA["Total Killed"])
+
+func on_level_up():
+	if GData.GAME_DATA["XP"] > (snappedf(pow(GData.GAME_DATA["Level"],1.8) * 100,0.1)):
+		GData.GAME_DATA["XP"] = 0
+		GData.GAME_DATA["Level"] += 1
+		$Info_panel/XP_Bar.max_value = pow(GData.GAME_DATA["Level"],1.8) * 100
 		$Panel/Lvl_up_lbl.visible = true
-		$Panel/Cards_Panel.LEVEL = SaveLoadG.Player_Statistic["Level"]
+		$Panel/Cards_Panel.LEVEL = GData.GAME_DATA["Level"]
 		#print($Panel/Cards_Panel.LEVEL)
 		#print($Panel/Cards_Panel.CURRENT_LEVEL)
-	
-	var player = player_ui.get_parent()
-	
-	if player.HIT:
-		#print(player.HIT)
-		hp_sp_update()
 
-func enemy_is_killed():
-	#print("Yes")
-	kill_count_var += 1
-	kill_count.text = "Kill Count:" + str(kill_count_var)
-
-func level_up():
-	if SaveLoadG.Player_Statistic["XP"] > (snappedf(pow(SaveLoadG.Player_Statistic["Level"],1.8) * 100,0.1)):
-		SaveLoadG.Player_Statistic["XP"] = 0
-		SaveLoadG.Player_Statistic["Level"] += 1
-		return 1
-	return 0
-
-func hp_sp_init():
-	CURRENT_HEALTH = float(SaveLoadG.Player_Statistic["HP"])
-	$Info_panel/Health_Panel.material.set("shader_parameter/height",CURRENT_HEALTH/CURRENT_HEALTH)
-	$Info_panel/Stamina_Panel.material.set("shader_parameter/height",1.0)
-
-func hp_sp_update():
-	var player = player_ui.get_parent()
-	player.HIT = false
-	CURRENT_HEALTH = player.CURRENT_HP / float(SaveLoadG.Player_Statistic["HP"]) 
+func update_hp_sp():
+	#CURRENT_HEALTH = PLAYER.CURRENT_HP / float(GData.GAME_DATA["HP"])
 	#print(CURRENT_HEALTH)
-	if player.CURRENT_HP > 0:
-		$Info_panel/Health_Panel.material.set("shader_parameter/height",CURRENT_HEALTH)
+	if PLAYER.CURRENT_HP > 0:
+		$Info_panel/Health_Panel.material.set("shader_parameter/height",PLAYER.CURRENT_HP / float(GData.GAME_DATA["HP"]))
 	else:
 		$Info_panel/Health_Panel.material.set("shader_parameter/height",0.0)
 
@@ -108,13 +101,11 @@ func _on_close_btn_pressed() -> void:
 	$Panel/Cards_Panel.visible = false
 
 func _on_hp_card_btn_pressed() -> void:
-	var player = player_ui.get_parent()
-	player.HIT = false
+	PLAYER.HIT = false
 	await get_tree().create_timer(0.1).timeout
-	CURRENT_HEALTH = player.CURRENT_HP / float(SaveLoadG.Player_Statistic["HP"])
-	if player.CURRENT_HP > 0:
-		$Info_panel/Health_Panel.material.set("shader_parameter/height",CURRENT_HEALTH) 
+	#CURRENT_HEALTH = PLAYER.CURRENT_HP / float(GData.GAME_DATA["HP"])
+	if PLAYER.CURRENT_HP > 0:
+		$Info_panel/Health_Panel.material.set("shader_parameter/height",PLAYER.CURRENT_HP / float(GData.GAME_DATA["HP"])) 
 
 func _on_dash_btn_pressed() -> void:
-	var player = player_ui.get_parent()
-	player.dash = true
+	PLAYER.dash = true

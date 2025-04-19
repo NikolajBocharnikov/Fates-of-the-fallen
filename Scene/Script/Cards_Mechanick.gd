@@ -9,7 +9,7 @@ var player:Node3D = null
 var level_is_up:bool = false
 
 func _ready() -> void:
-	CURRENT_LEVEL = SaveLoadG.Player_Statistic["Level"]
+	CURRENT_LEVEL = GData.GAME_DATA["Level"]
 	LEVEL = CURRENT_LEVEL
 	player = $"../..".get_parent()
 
@@ -27,16 +27,16 @@ func _process(delta: float) -> void:
 		
 		if CARD_TYPE != " ":
 			if CARD_TYPE == "ATK":
-				SaveLoadG.Player_Statistic["Atack"] += 1
+				GData.GAME_DATA["Atack"] += 1
 				CURRENT_LEVEL += 1
 				CARD_TYPE = " "
 			if CARD_TYPE == "HP":
-				SaveLoadG.Player_Statistic["HP"] += 1
+				GData.GAME_DATA["HP"] += 1
 				CURRENT_LEVEL += 1
 				player.CURRENT_HP += 1.0
 				CARD_TYPE = " "
 			if CARD_TYPE == "SP":
-				SaveLoadG.Player_Statistic["Atack Speed"] += 0.1
+				GData.GAME_DATA["Atack Speed"] += 0.1
 				CURRENT_LEVEL += 1
 				CARD_TYPE = " "
 			
@@ -73,5 +73,5 @@ func _on_exit_btn_pressed() -> void:
 	get_tree().quit()
 
 func _on_file_dialog_file_selected(path: String) -> void:
-	SaveLoadG.save(path)
+	GData.save(path)
 	#print(path)

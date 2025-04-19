@@ -12,5 +12,5 @@ func _ready() -> void:
 func _on_pick_up_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player_node"):
 		#print("Picked")
-		SaveLoadG.Player_Statistic["XP"] += (1 * snappedf(pow(XP_Drop,1.8),0.1))
+		GData.GAME_DATA["XP"] += (1 * snappedf(pow(XP_Drop,1.8),0.1))
 		queue_free()
