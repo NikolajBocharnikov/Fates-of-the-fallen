@@ -9,8 +9,8 @@ texture_mode = 1
 curve = SubResource("Curve_utkyy")
 
 [sub_resource type="Gradient" id="Gradient_gxkce"]
-offsets = PackedFloat32Array(0, 0.363636, 0.690909, 1)
-colors = PackedColorArray(0.929412, 0.678431, 0.678431, 1, 0.443137, 0.305882, 0.305882, 1, 0.125904, 0.0782645, 0.0782896, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.363636, 0.718182, 1)
+colors = PackedColorArray(0.929412, 0.678431, 0.678431, 1, 0.443137, 0.305882, 0.305882, 1, 0.443137, 0.305882, 0.305882, 1, 0.443137, 0.305882, 0.305882, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6a4dk"]
 gradient = SubResource("Gradient_gxkce")

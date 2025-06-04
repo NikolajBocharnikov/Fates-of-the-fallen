@@ -6,7 +6,7 @@ extends Node3D
 var wind_atk = preload("res://Assets/Sound/Weapon_sounds/8_Atk_Magic_SFX/25_Wind_01.wav")
 
 func play_sound():
-	if player.velocity.y == 0:
+	if player.is_on_floor():
 		steps_grass.pitch_scale = randf_range(0.8,1.2)
 		steps_grass.play()
 

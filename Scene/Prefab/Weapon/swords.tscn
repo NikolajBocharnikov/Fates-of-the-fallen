@@ -15,6 +15,15 @@ var damage:int = 1
 @warning_ignore(\"unused_parameter\")
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(\"ui_switch_weapon\"):
+		
+		match GData.GAME_DATA[\"Meele_Weapon_Selected\"]:
+			\"Steal\":
+				$Stylized_Sword_wow_Steal.visible = true
+				$Stylized_Sword_wow_PurpleIce.visible = false
+			\"Purple_Ice\":
+				$Stylized_Sword_wow_PurpleIce.visible = true
+				$Stylized_Sword_wow_Steal.visible = false
+		
 		for i in 5:
 			if get_child(i).visible:
 				damage = DAMAGE_arry[i]

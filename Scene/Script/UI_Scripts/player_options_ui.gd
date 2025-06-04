@@ -20,8 +20,11 @@ func init_saved_settings():
 	if get_window().has_node("Main_menu"):
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), GData.GAME_DATA["Sound_Volume"])
 		get_window().set_size(GData.GAME_DATA["Resolution"])
-		get_window().set_content_scale_size(GData.GAME_DATA["Resolution"])
-		get_window().move_to_center()
+		get_window().set_content_scale_size(get_window().size)
+		if get_window().mode == DisplayServer.WINDOW_MODE_MAXIMIZED:
+			get_window().mode = Window.MODE_MINIMIZED
+			get_window().mode = Window.MODE_MAXIMIZED
+			#print("Yes")
 		get_viewport().scaling_3d_scale = GData.GAME_DATA["3d_Scale"]
 	
 	$Music_Volume/M_Slider.value = GData.GAME_DATA["Sound_Volume"]
@@ -50,21 +53,33 @@ func _on_res_menu_button_item_selected(index: int) -> void:
 			get_window().set_size(Availible_Resolution["648P"])
 			get_window().set_content_scale_size(Availible_Resolution["648P"])
 			get_window().move_to_center()
+			if get_window().mode == DisplayServer.WINDOW_MODE_MAXIMIZED:
+				get_window().mode = Window.MODE_MINIMIZED
+				get_window().mode = Window.MODE_MAXIMIZED
 			GData.GAME_DATA["Resolution"] = Availible_Resolution["648P"]
 		1:
 			get_window().set_size(Availible_Resolution["HD"])
 			get_window().set_content_scale_size(Availible_Resolution["HD"])
 			get_window().move_to_center()
+			if get_window().mode == DisplayServer.WINDOW_MODE_MAXIMIZED:
+				get_window().mode = Window.MODE_MINIMIZED
+				get_window().mode = Window.MODE_MAXIMIZED
 			GData.GAME_DATA["Resolution"] = Availible_Resolution["HD"]
 		2:
 			get_window().set_size(Availible_Resolution["SHD"])
 			get_window().set_content_scale_size(Availible_Resolution["SHD"])
 			get_window().move_to_center()
+			if get_window().mode == DisplayServer.WINDOW_MODE_MAXIMIZED:
+				get_window().mode = Window.MODE_MINIMIZED
+				get_window().mode = Window.MODE_MAXIMIZED
 			GData.GAME_DATA["Resolution"] = Availible_Resolution["SHD"]
 		3:
 			get_window().set_size(Availible_Resolution["FullHD"])
 			get_window().set_content_scale_size(Availible_Resolution["FullHD"])
 			get_window().move_to_center()
+			if get_window().mode == DisplayServer.WINDOW_MODE_MAXIMIZED:
+				get_window().mode = Window.MODE_MINIMIZED
+				get_window().mode = Window.MODE_MAXIMIZED
 			GData.GAME_DATA["Resolution"] = Availible_Resolution["FullHD"]
 
 func _on_scale_option_button_item_selected(index: int) -> void:

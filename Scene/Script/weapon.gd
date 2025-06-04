@@ -3,8 +3,8 @@ extends Node3D
 @export var BULLET_PREFAB:PackedScene
 @export var PLAYER_NODE:Node3D
 @export var SHOOT_POS:Node3D
-@export var SHOOT_RATE:float
 
+var SHOOT_RATE:float
 var WEAPON_TYPE:PackedStringArray = ["Scepters","Swords"]
 
 var root_node:Node3D 

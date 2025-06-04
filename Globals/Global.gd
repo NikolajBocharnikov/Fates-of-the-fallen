@@ -6,7 +6,15 @@ var this_scene
 
 const GAME_SCENES := {
 	"Main": "res://Scene/main.tscn",
-	"City": "res://Scene/city_preview.tscn"
+	"City": "res://Scene/city_preview.tscn",
+	"New_City":"res://Scene/Locations/city_block_out.tscn",
+	"Clay_Hills":"res://Scene/Locations/Clay_Hills.tscn",
+	"Level_2":"res://Scene/Locations/Level_2.tscn",
+	"Level_3":"res://Scene/Locations/Level_3.tscn",
+	"Level_4":"res://Scene/Locations/Level_4.tscn",
+	"Level_5":"res://Scene/Locations/Level_5.tscn",
+	"Level_6":"res://Scene/Locations/Level_6.tscn",
+	"Level_7":"res://Scene/Locations/Level_7.tscn",
 }
 
 func load_scene(current_scene:Variant,next_scene:Variant) -> void:

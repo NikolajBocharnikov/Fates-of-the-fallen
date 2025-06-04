@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bca22th603ld0"]
+
+[ext_resource type="PackedScene" uid="uid://5po2lefmydl4" path="res://Assets/Models/NPC/Stylized_Myra_the_Barkeeper.glb" id="1_hikyn"]
+
+[node name="Barkeeper" type="Node3D"]
+
+[node name="Stylized_Myra_the_Barkeeper" parent="." instance=ExtResource("1_hikyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

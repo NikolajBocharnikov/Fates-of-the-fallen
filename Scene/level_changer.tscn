@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbp5lhur6bunk"]
+
+[ext_resource type="Script" uid="uid://dlsaathlo15r4" path="res://Scene/Script/level_changer.gd" id="1_wwmwb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dngbg"]
+albedo_color = Color(0.167138, 0.195488, 0.598013, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_c1rpu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_id2fc"]
+size = Vector3(1, 2.21722, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dngbg"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Level_Changer" type="Node3D"]
+script = ExtResource("1_wwmwb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_dngbg")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_c1rpu")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_id2fc")
+
+[node name="Loading_Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dngbg")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Loading_Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Loading_Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 30
+text = "Loading"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Loading_Panel/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+show_percentage = false
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

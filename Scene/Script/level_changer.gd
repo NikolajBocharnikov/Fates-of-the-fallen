@@ -1,5 +1,7 @@
 extends Node3D
 
+var next_scene:String = "Main"
+
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	if Global.is_loading:
@@ -11,4 +13,4 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player_node"):
-		Global.load_scene($"..","Main")
+		Global.load_scene($"..",next_scene)

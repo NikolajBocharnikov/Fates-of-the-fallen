@@ -1,0 +1,228 @@
+[gd_scene load_steps=14 format=3 uid="uid://vd02htxjlkbq"]
+
+[ext_resource type="Theme" uid="uid://bwbvuor4bwca7" path="res://Materials/UI_Theme/Theme_0.tres" id="1_tptuk"]
+[ext_resource type="Texture2D" uid="uid://b7x4e7skyvj7r" path="res://Assets/Images/ICONs/Pixel's_icon/Weapon & Tool/Golden Sword.png" id="2_ei2mi"]
+[ext_resource type="PackedScene" uid="uid://btxij3h3h7122" path="res://Assets/Models/Weapon/Stylized_Sword_wow_PurpleIce.glb" id="3_8hvuv"]
+[ext_resource type="PackedScene" uid="uid://bfys8psahpphh" path="res://Assets/Models/Weapon/Stylized_Sword_wow_Steal.glb" id="3_ei2mi"]
+[ext_resource type="Material" uid="uid://bhkt51irotkmv" path="res://Assets/Models/Weapon/Sword_Steal.tres" id="4_85hve"]
+[ext_resource type="Material" uid="uid://cji57eku1m8hv" path="res://Assets/Models/Weapon/Sword_PurpleIce.tres" id="4_yin4a"]
+[ext_resource type="Texture2D" uid="uid://cuhh5iqajcptt" path="res://Assets/Images/UI_Images/Kenny_UI/Double/Transparent center/panel-transparent-center-002.png" id="7_85hve"]
+
+[sub_resource type="GDScript" id="GDScript_85hve"]
+script/source = "extends Control
+
+@onready var floating_lbl: Label = $Floating_Lbl
+@onready var meele_pop_panel: Panel = $Meele_Pop_Panel
+
+var unlocked_meele_weapon:Array = [\"Steal\"]
+
+func _ready() -> void:
+	unlocked_meele_weapon = GData.GAME_DATA[\"Meele_Weapon_Unlocked\"]
+
+@warning_ignore(\"unused_parameter\")
+func _physics_process(delta: float) -> void:
+	if get_parent() != null:
+		if get_parent().visible == false:
+			$Meele_Pop_Panel.visible = false
+
+func _on_meele_btn_pressed() -> void:
+	meele_pop_panel.visible = !meele_pop_panel.visible
+	for i in unlocked_meele_weapon.size():
+		#print(unlocked_weapon[i])
+		match unlocked_meele_weapon[i]:
+			\"Steal\":
+				pass
+			\"Purple_Ice\":
+				$Meele_Pop_Panel/Sword_Purple_Ice/Locked.visible = false
+
+#Steal Sword Buttons
+func _on_sword_steal_mouse_entered() -> void:
+	floating_lbl.global_position = $Meele_Pop_Panel/Sword_Steal.global_position + Vector2(0,92)
+	floating_lbl.text = \"Steal Sword\"
+
+func _on_sword_steal_mouse_exited() -> void:
+	floating_lbl.text = \" \" 
+
+@warning_ignore(\"unused_parameter\")
+func _on_sword_steal_toggled(toggled_on: bool) -> void:
+	if $Meele_Pop_Panel/Sword_Purple_Ice.button_pressed:
+		$Meele_Pop_Panel/Sword_Purple_Ice.set_pressed_no_signal(false)
+	$Meele_Pop_Panel/Sword_Steal.set_pressed_no_signal(true)
+	
+	GData.GAME_DATA[\"Meele_Weapon_Selected\"] = \"Steal\"
+
+#Purple Ice Sword Buttons
+func _on_sword_purple_ice_mouse_entered() -> void:
+	floating_lbl.global_position = $Meele_Pop_Panel/Sword_Purple_Ice.global_position + Vector2(0,92)
+	floating_lbl.text = \"Purple Ice\"
+
+func _on_sword_purple_ice_mouse_exited() -> void:
+	floating_lbl.text = \" \" 
+
+@warning_ignore(\"unused_parameter\")
+func _on_sword_purple_ice_toggled(toggled_on: bool) -> void:
+	if $Meele_Pop_Panel/Sword_Steal.button_pressed:
+		$Meele_Pop_Panel/Sword_Steal.set_pressed_no_signal(false)
+	$Meele_Pop_Panel/Sword_Purple_Ice.set_pressed_no_signal(true)
+	
+	GData.GAME_DATA[\"Meele_Weapon_Selected\"] = \"Purple_Ice\"
+
+#TO DO
+func unlock_weapon(weapon:String):
+	if !unlocked_meele_weapon.has(weapon):
+		unlocked_meele_weapon.append(weapon)
+		GData.GAME_DATA[\"Meele_Weapon_Unlocked\"].append(weapon)
+
+func _on_test_btn_pressed() -> void:
+	unlock_weapon(\"Purple_Ice\")
+"
+
+[sub_resource type="World3D" id="World3D_85hve"]
+
+[sub_resource type="World3D" id="World3D_yy5lw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yy5lw"]
+texture = ExtResource("7_85hve")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_prxfa"]
+viewport_path = NodePath("Steal")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_85hve"]
+viewport_path = NodePath("Purple_Ice")
+
+[node name="Weapon_Slot_Selector" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tptuk")
+script = SubResource("GDScript_85hve")
+
+[node name="Purple_Ice" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = SubResource("World3D_85hve")
+transparent_bg = true
+size = Vector2i(128, 128)
+render_target_update_mode = 1
+
+[node name="Stylized_Sword_wow_PurpleIce" parent="Purple_Ice" instance=ExtResource("3_8hvuv")]
+
+[node name="Sword_purple_Ice" parent="Purple_Ice/Stylized_Sword_wow_PurpleIce" index="0"]
+material_override = ExtResource("4_yin4a")
+
+[node name="Camera3D" type="Camera3D" parent="Purple_Ice"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675258, 1.75189)
+projection = 1
+size = 2.0
+
+[node name="Steal" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = SubResource("World3D_yy5lw")
+transparent_bg = true
+size = Vector2i(128, 128)
+render_target_update_mode = 1
+
+[node name="Stylized_Sword_wow_Steal" parent="Steal" instance=ExtResource("3_ei2mi")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 2.1, -0.18, 0)
+
+[node name="Sword_Steal" parent="Steal/Stylized_Sword_wow_Steal" index="0"]
+material_override = ExtResource("4_85hve")
+
+[node name="Camera3D" type="Camera3D" parent="Steal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 0.675258, 1.75189)
+projection = 1
+size = 2.0
+
+[node name="Meele_Btn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -46.0
+offset_right = 46.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("2_ei2mi")
+
+[node name="Meele_Pop_Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.0
+offset_top = -46.0
+offset_right = -51.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy5lw")
+
+[node name="Sword_Steal" type="Button" parent="Meele_Pop_Panel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 9.0
+offset_right = 218.0
+offset_bottom = 197.0
+scale = Vector2(0.4, 0.4)
+toggle_mode = true
+button_pressed = true
+icon = SubResource("ViewportTexture_prxfa")
+
+[node name="Sword_Purple_Ice" type="Button" parent="Meele_Pop_Panel"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 9.0
+offset_right = 297.0
+offset_bottom = 197.0
+scale = Vector2(0.4, 0.4)
+toggle_mode = true
+icon = SubResource("ViewportTexture_85hve")
+
+[node name="Locked" type="Panel" parent="Meele_Pop_Panel/Sword_Purple_Ice"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Floating_Lbl" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 18.0
+
+[node name="Test_btn" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -45.0
+offset_top = -150.0
+offset_right = 30.0
+offset_bottom = -72.0
+text = "P"
+
+[connection signal="pressed" from="Meele_Btn" to="." method="_on_meele_btn_pressed"]
+[connection signal="mouse_entered" from="Meele_Pop_Panel/Sword_Steal" to="." method="_on_sword_steal_mouse_entered"]
+[connection signal="mouse_exited" from="Meele_Pop_Panel/Sword_Steal" to="." method="_on_sword_steal_mouse_exited"]
+[connection signal="toggled" from="Meele_Pop_Panel/Sword_Steal" to="." method="_on_sword_steal_toggled"]
+[connection signal="mouse_entered" from="Meele_Pop_Panel/Sword_Purple_Ice" to="." method="_on_sword_purple_ice_mouse_entered"]
+[connection signal="mouse_exited" from="Meele_Pop_Panel/Sword_Purple_Ice" to="." method="_on_sword_purple_ice_mouse_exited"]
+[connection signal="toggled" from="Meele_Pop_Panel/Sword_Purple_Ice" to="." method="_on_sword_purple_ice_toggled"]
+[connection signal="pressed" from="Test_btn" to="." method="_on_test_btn_pressed"]
+
+[editable path="Purple_Ice/Stylized_Sword_wow_PurpleIce"]
+[editable path="Steal/Stylized_Sword_wow_Steal"]

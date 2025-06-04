@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bsjw3ey0tldsp"]
+[gd_scene load_steps=17 format=3 uid="uid://bsjw3ey0tldsp"]
 
 [ext_resource type="PackedScene" uid="uid://dno606fkno6dh" path="res://Scene/Prefab/camera_arm.tscn" id="1_1xcnr"]
 [ext_resource type="ArrayMesh" uid="uid://dfbicr4xpudv2" path="res://Assets/Models/HUB.obj" id="1_2wwxx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://dmrn841yukh0e" path="res://Materials/Terrain_material.tres" id="2_3amdw"]
 [ext_resource type="PackedScene" uid="uid://2l2333mn6ex1" path="res://Scene/enemy_spawner.tscn" id="2_sblpm"]
 [ext_resource type="PackedScene" uid="uid://b8qkhb0e6x603" path="res://Scene/Prefab/FX/smoke.tscn" id="3_3amdw"]
+[ext_resource type="PackedScene" uid="uid://dgdnfpyslrr0f" path="res://Scene/Prefab/Enemis/enemy.tscn" id="7_c2iwn"]
 [ext_resource type="Script" uid="uid://6tfu4007i7k0" path="res://Scene/Script/ore_spawner.gd" id="7_ow1sv"]
 [ext_resource type="PackedScene" uid="uid://dci3mnjpcsc6" path="res://Scene/Prefab/Ore.tscn" id="8_75buv"]
 
@@ -136,6 +137,7 @@ parameters/Idle_to_Run/current_index = -1
 
 [node name="Enemy_spawner" parent="." instance=ExtResource("2_sblpm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -3.514)
+ENEMY_PREFAB = Array[PackedScene]([ExtResource("7_c2iwn")])
 
 [node name="Ore_spawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -7.047)

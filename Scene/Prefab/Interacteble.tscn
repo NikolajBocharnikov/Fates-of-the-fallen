@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwon8ivkndbp7"]
+
+[sub_resource type="GDScript" id="GDScript_ns26n"]
+resource_name = "DATA"
+script/source = "extends Area3D
+
+@export var selected_scene:String
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1j56w"]
+size = Vector3(1.1311, 1.05127, 1.10596)
+
+[node name="Area" type="Area3D" groups=["Interacteble"]]
+script = SubResource("GDScript_ns26n")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0181885, 0.508011, -0.00952148)
+shape = SubResource("BoxShape3D_1j56w")

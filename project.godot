@@ -22,13 +22,14 @@ GData="*res://Globals/G_Data.gd"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://be2ofxjndvfh0"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dreadpon.spatial_gardener/plugin.cfg", "res://addons/proton_control_animation/plugin.cfg")
+enabled=PackedStringArray("res://addons/dreadpon.spatial_gardener/plugin.cfg", "res://addons/proton_control_animation/plugin.cfg", "res://addons/so_fluffy/plugin.cfg")
 
 [global_group]
 

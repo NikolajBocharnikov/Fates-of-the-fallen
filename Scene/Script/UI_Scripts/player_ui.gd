@@ -19,6 +19,7 @@ func _ready() -> void:
 	
 	update_text()
 	update_hp_sp()
+	
 
 @warning_ignore("unused_parameter")
 func _input(event: InputEvent) -> void:
@@ -77,12 +78,12 @@ func update_hp_sp():
 	else:
 		$Info_panel/Health_Panel.material.set("shader_parameter/height",0.0)
 
-func _on_container_resized() -> void:
+func _on_container_resized() -> void: #Dont work for no aperent reason
 	
 	var con_scale
 	#print(screen_size)
 	
-	if screen_size == null:
+	if screen_size == Vector2(0.0,0.0):
 		return
 	
 	if screen_size != $Info_panel.size:

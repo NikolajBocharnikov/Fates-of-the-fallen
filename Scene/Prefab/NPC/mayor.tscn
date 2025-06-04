@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf4h8itutahdk"]
+
+[ext_resource type="PackedScene" uid="uid://bpcsgordaajee" path="res://Assets/Models/NPC/Stylized_Mayor_Elric_Vane.glb" id="1_j6oc1"]
+
+[node name="Mayor" type="Node3D"]
+
+[node name="Stylized_Mayor_Elric_Vane" parent="." instance=ExtResource("1_j6oc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.860173, 0)

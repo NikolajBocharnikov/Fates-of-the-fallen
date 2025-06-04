@@ -20,7 +20,7 @@ func _on_new_game_btn_pressed() -> void:
 		#print("No")
 		dir.make_dir_recursive("GodotSave/Fates_of_the_Fallen")
 	
-	Global.load_scene(self,"City")
+	Global.load_scene(self,"New_City")
 
 func _on_exit_btn_pressed() -> void:
 	$Control/AudioStreamPlayer.play()

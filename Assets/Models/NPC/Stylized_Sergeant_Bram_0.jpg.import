@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b4rogto8vj72a"
+path.s3tc="res://.godot/imported/Stylized_Sergeant_Bram_0.jpg-f9f3ebc05d1db78687c5d8091268ec7a.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "8b3783029ac8e550efaae428535f3118"
+}
+
+[deps]
+
+source_file="res://Assets/Models/NPC/Stylized_Sergeant_Bram_0.jpg"
+dest_files=["res://.godot/imported/Stylized_Sergeant_Bram_0.jpg-f9f3ebc05d1db78687c5d8091268ec7a.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

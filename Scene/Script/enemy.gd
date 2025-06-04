@@ -4,6 +4,8 @@ extends CharacterBody3D
 @export var HEALTH:int
 @export var LEVEL:int #Used in different script
 
+@export var animation_player:AnimationPlayer = null
+
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D as NavigationAgent3D
 @onready var health_bar: TextureProgressBar = $UI/Health_Bar
 
@@ -52,12 +54,19 @@ func patrole(dir:Vector3):
 		
 		patruling = true
 		velocity = self.global_position.direction_to(navigation_agent.get_next_path_position()) * MOVE_SPEED
+		
+		if animation_player != null:
+			$Crocodilo.look_at(navigation_agent.get_next_path_position())
+			animation_player.play("Walking")
 
 func move_to_player():
 	if !player == null:
 		if self.global_position.distance_to(player.global_position) < 10:
 			navigation_agent.set_target_position(player.global_position)
 			velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * MOVE_SPEED
+			if animation_player != null:
+				$Crocodilo.look_at(player.global_position)
+				animation_player.play("Running")
 			#print(self.global_position.distance_to(player.global_position))
 		if self.global_position.distance_to(player.global_position) < 2:
 			in_akt_range = true

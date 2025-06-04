@@ -1,0 +1,118 @@
+[gd_scene load_steps=13 format=3 uid="uid://7gbke47iufbl"]
+
+[ext_resource type="Script" uid="uid://cpot54j0lesjk" path="res://Scene/Script/enemy.gd" id="1_lf8xp"]
+[ext_resource type="PackedScene" uid="uid://dg3ukag7q6ajm" path="res://Assets/Models/Enemis/crocodilo.tscn" id="2_ayd6h"]
+[ext_resource type="Script" uid="uid://cwn8lknerb44e" path="res://Scene/Script/UI_Scripts/enemy_ui.gd" id="2_wtkpy"]
+[ext_resource type="BehaviorTree" uid="uid://e8j1ffr5lqnw" path="res://Globals/Limbo_AI_DATA/Enemy_BT.tres" id="3_ayd6h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pvvyl"]
+size = Vector3(1, 0.608154, 0.886719)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ic4nx"]
+radius = 0.212293
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iker5"]
+size = Vector3(1.1, 1.71973, 1.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ttbl7"]
+radius = 10.0
+
+[sub_resource type="Gradient" id="Gradient_ttbl7"]
+colors = PackedColorArray(0.787584, 0.136445, 0.202122, 1, 0.548604, 0.683183, 0.0813677, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f26sk"]
+gradient = SubResource("Gradient_ttbl7")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ttbl7"]
+diffuse_texture = SubResource("GradientTexture1D_f26sk")
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_f26sk"]
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("animation_player") groups=["Enemy"]]
+script = ExtResource("1_lf8xp")
+MOVE_SPEED = 1.2
+HEALTH = 15
+LEVEL = 7
+animation_player = NodePath("Crocodilo/AnimationPlayer")
+
+[node name="Crocodilo" parent="." instance=ExtResource("2_ayd6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68289e-08, 0, 0.385001)
+
+[node name="Skeleton3D" parent="Crocodilo/Armature" index="0"]
+bones/0/position = Vector3(0.279784, 2.86951, 22.9477)
+bones/0/rotation = Quaternion(0.253399, -0.0125778, -0.0453935, 0.966214)
+bones/1/rotation = Quaternion(0.322232, 0.214859, -0.625516, 0.677298)
+bones/2/rotation = Quaternion(0.731983, 0.59324, 0.229338, 0.244277)
+bones/3/rotation = Quaternion(-0.793897, 0.10349, 0.0299309, 0.598432)
+bones/4/rotation = Quaternion(-0.0447688, -0.00389479, 0.00554875, 0.998974)
+bones/5/rotation = Quaternion(0.326291, -0.225455, 0.601229, 0.693706)
+bones/6/rotation = Quaternion(0.723774, -0.489073, -0.413211, 0.257324)
+bones/7/rotation = Quaternion(-0.817076, -0.0944648, -0.0696577, 0.564456)
+bones/8/rotation = Quaternion(0.000337931, -0.0373779, 0.00235724, 0.999298)
+bones/9/rotation = Quaternion(-0.00399993, 0.0792535, 0.0752477, 0.994002)
+bones/10/rotation = Quaternion(0.000957122, -0.0294566, -0.0206808, 0.999352)
+bones/11/rotation = Quaternion(-0.0715758, -0.0549291, -0.0376932, 0.995208)
+bones/12/rotation = Quaternion(0.664349, 0.180484, -0.462838, 0.558433)
+bones/13/rotation = Quaternion(0.421135, 0.553706, -0.112203, 0.709553)
+bones/14/rotation = Quaternion(-0.358205, -0.236548, -0.0130323, 0.903086)
+bones/15/rotation = Quaternion(-0.215287, -0.113259, -0.0608607, 0.96805)
+bones/16/rotation = Quaternion(0.620351, -0.25635, 0.482834, 0.562424)
+bones/17/rotation = Quaternion(0.423108, -0.557908, 0.0422233, 0.712696)
+bones/18/rotation = Quaternion(-0.379754, 0.219539, -0.116778, 0.89104)
+bones/19/rotation = Quaternion(-0.221702, 0.148193, 0.0106736, 0.963729)
+bones/20/rotation = Quaternion(0.0721583, 0.025058, 0.0191179, 0.996895)
+bones/21/rotation = Quaternion(0.411884, 0.0203022, -0.00558252, 0.910993)
+bones/22/rotation = Quaternion(-0.241158, 0.000106488, 0.00252255, 0.970483)
+
+[node name="Collision_1" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.09962e-08, 0.385335, 0.0667188)
+shape = SubResource("BoxShape3D_pvvyl")
+
+[node name="Collision_2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5.83274e-09, 0.135336, 0.125782)
+shape = SubResource("SphereShape3D_ic4nx")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.3
+
+[node name="Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.640137, 0)
+shape = SubResource("BoxShape3D_iker5")
+
+[node name="Visible_Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visible_Area"]
+shape = SubResource("SphereShape3D_ttbl7")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -30, 0)
+
+[node name="UI" type="Control" parent="."]
+z_index = -1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_wtkpy")
+
+[node name="Health_Bar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = -16.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = SubResource("CanvasTexture_ttbl7")
+
+[node name="BTPlayer" type="BTPlayer" parent="."]
+behavior_tree = ExtResource("3_ayd6h")
+blackboard_plan = SubResource("BlackboardPlan_f26sk")
+
+[connection signal="area_entered" from="Area" to="." method="_on_area_area_entered"]
+[connection signal="body_entered" from="Visible_Area" to="." method="_on_visible_area_body_entered"]
+[connection signal="body_exited" from="Visible_Area" to="." method="_on_visible_area_body_exited"]
+
+[editable path="Crocodilo"]
